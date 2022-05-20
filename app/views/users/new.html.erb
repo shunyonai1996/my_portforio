@@ -1,0 +1,26 @@
+<h1>ログイン</h1>
+
+<div>
+  <%= form_with(model: @user, local:true) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email, "メール" %>
+    <%= f.text_field :email %>
+
+    <%= f.label :birthday, "生年月日（西暦）" %>
+    <%= f.date_field :birthday %>
+
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, "パスワード確認用" %>
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
+
+<a href="#">ログインはこちら</a>

@@ -1,0 +1,11 @@
+ja:
+  applicationrecord:
+    #設定したいモデル名を指定
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password_digest: パスワード
+        age: 生年月日

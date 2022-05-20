@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'post', to: 'posts#index'
   get 'comment', to: 'posts#comment'
   get 'new', to: 'posts#new'
+  get 'signup', to: 'users#new'
 
-  resource :users
+  resources :users
 end

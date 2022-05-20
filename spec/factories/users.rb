@@ -1,11 +1,11 @@
 FactoryBot.define do
 
   factory :user do
-    name            {'tarou'}
-    email           {'sample@gmail.com'}
+    name            {'Example User'}
+    email           {'user@example.com'}
     password        {'foobar'}
-    birthday        {'1996-01-01'}
-    job             {'公務員'}
-    work_span       {5}
+    birthday        {'1996-10-10'}
+    # job             {'公務員'}
+    # work_span       {5}
   end
 end
