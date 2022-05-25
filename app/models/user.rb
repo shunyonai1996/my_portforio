@@ -5,12 +5,19 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 200 },
   format: { with: VALID_EMAIL_REGEX },
   uniqueness: { case_sensitive: false }
+  has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   validates :birthday, presence: true
   # validates :job, presence: true
   # validates :work_span, presence: true
-  has_secure_password
   has_one_attached :image
+
+  #テスト用データを作成するため、
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+    BCrypt::Engine.cost
+    BCrypt::password.create(string, cost: cost)
+  end
 end
 # class User < ActiveRecord::Base
 #   mount_uploader :avatar, AvatarUploader

@@ -1,10 +1,11 @@
 FactoryBot.define do
 
   factory :user do
-    name            {'Example User'}
-    email           {'user@example.com'}
-    password        {'foobar'}
-    birthday        {'1996-10-10'}
+    sequence(:name)                   {|n| 'TestUser#{n}'}
+    sequence(:email)                  {'Test@example.com'}
+    sequence(:birthday)               {'1996-01-01'}
+    sequence(:password)               {'foobar'}
+    sequence(:password_confirmation)  {'foobar'}
     # job             {'公務員'}
     # work_span       {5}
   end

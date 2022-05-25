@@ -1,8 +1,9 @@
 <% if @user.errors.any? %>
   <div>
-    <div>
+    <div class="alert alert-danger">
       入力項目に <%= pluralize(@user.errors.count, "個のエラー") %>
     </div>
+
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

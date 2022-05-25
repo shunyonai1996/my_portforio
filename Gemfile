@@ -5,6 +5,7 @@ ruby '3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'bootstrap-sass', '3.4.1'
 # Use sqlite3 as the database for Active Record
 gem 'bcrypt', '~> 3.1.13'
 gem 'sqlite3', '~> 1.4'
