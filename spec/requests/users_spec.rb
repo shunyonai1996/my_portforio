@@ -44,4 +44,46 @@ RSpec.describe "Users", type: :request do
         expect(logged_in?).to be_truthy
       end
     end
+
+  describe '#edit' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:other_user) { FactoryBot.create(:user, :other) }
+    
+    context '未ログインの場合' do
+      it 'ログインしていない場合、編集画面にアクセスできず、リダイレクトされる' do
+        get edit_user_path(user)
+        expect(flash[:danger]).to eq 'ログインしてください'
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context '別ユーザの場合' do
+      it '別ユーザの編集画面にアクセスしようとすると、root_urlにリダイレクトされる' do
+        log_in_as(user)
+        get edit_user_path(other_user)
+        expect(flash[:danger]).to eq nil
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    it '一般ユーザーは管理者権限の付与ができない' do
+      log_in_as(user)
+      expect(other_user.admin?).to_not be_truthy
+      patch user_path(other_user), params: {
+        user: { password:              "password",
+                password_confirmation: "password",
+                admin: true } }
+      expect(other_user.admin?).to_not be_truthy
+    end
+  end
+  
+  describe '#update' do
+    let(:user) { FactoryBot.create(:user) }
+    it 'ログインしていない場合、編集を更新できず、リダイレクトされる' do
+      patch user_path(user)
+      expect(flash[:danger]).to eq 'ログインしてください'
+      expect(response).to redirect_to login_path
+    end
+  end
+
 end

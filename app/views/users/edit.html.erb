@@ -1,0 +1,36 @@
+<h1>プロフィールを編集</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name, '名前' %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :email, 'メールアドレス' %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :birthday, '生年月日' %>
+      <%= f.date_field :birthday, class: 'form-control' %>
+
+      <%= f.label :occupation_id, '職種' %><br>
+      <%= f.select :occupation_id, [['未選択', ''], ['a', 'dbへの保存'], ['b', 'db']], class: 'form-control' %><br>
+
+      <%= f.label :job, '職業' %>
+      <%= f.text_field :job, class: 'form-control' %>
+
+      <%= f.label :work_span, '勤続年数' %>
+      <%= f.number_field :work_span, class: 'form-control' %>
+
+      <%= f.label :password, 'パスワード' %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "パスワード確認用" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

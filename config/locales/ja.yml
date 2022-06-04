@@ -1,11 +1,14 @@
 ja:
-  applicationrecord:
-    #設定したいモデル名を指定
+  applicationecord:
     models:
       user: ユーザー
     attributes:
       user:
         name: 名前
         email: メールアドレス
-        password_digest: パスワード
-        age: 生年月日
+        password: パスワード
+        password_confirmation: パスワード（確認用)
+        birthday: 生年月日
+        occupation_if: 職種
+        job: 職業
+        work_span: 現在の職業の勤続年数
