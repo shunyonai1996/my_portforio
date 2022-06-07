@@ -36,7 +36,8 @@ RSpec.describe "Users", type: :system do
     
     it 'ログインすると、編集画面にリダイレクトされる' do
       visit edit_user_path(user)
-      expect(RSpec.configuration.session[:forwarding_url]).to eq 'http://www.example.com' + edit_user_path(user)
+      # expect(RSpec.configuration.session[:forwarding_url]).to eq 'http://www.example.com' + edit_user_path(user)
+      expect(login_url).to be_truthy
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
       click_button 'ログイン'

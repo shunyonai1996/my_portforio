@@ -1,10 +1,12 @@
 # メインのサンプルユーザーを1人作成する
 User.create!(name:  "TestUser",
-  email: "sample@example.com",
-  birthday: "1996-10-28",
-  password:              "foobar",
-  password_confirmation: "foobar",
-  admin: true)
+            email: "sample@example.com",
+            birthday: "1996-10-28",
+            password:              "foobar",
+            password_confirmation: "foobar",
+            admin: true,
+            activated: true,
+            activated_at: Time.zone.now)
 
 # 追加のユーザーをまとめて生成する
 99.times do |n|
@@ -13,8 +15,10 @@ email = "sample-#{n+1}@example.com"
 birthday = "1996-10-28"
 password = "foobar"
 User.create!(name:  name,
-    email: email,
-    birthday: birthday,
-    password:              password,
-    password_confirmation: password)
+            email: email,
+            birthday: birthday,
+            password:              password,
+            password_confirmation: password,
+            activated: true,
+            activated_at: Time.zone.now)
 end

@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
 
   describe '#authenticated?' do
     it 'ダイジェストがnilなら、authenticated?が失敗する' do
-      expect(user.authenticated?('')).to be_falsy
+      expect(user.authenticated?(:remember, '')).to be_falsy
     end
   end
 end

@@ -20,7 +20,14 @@ RSpec.describe "Users", type: :request do
                                   email:                 "user@example.com",
                                   birthday:              "1996/10/10",
                                   password:              "foobar",
-                                  password_confirmation: "foobar" } } } 
+                                  password_confirmation: "foobar",
+                                  admin:                  true,
+                                  activated:              true,
+                                  activated_at: Time.zone.now } } } 
+                                  
+      before do
+        ActionMailer::Base.deliveries.clear
+      end
         
       it "新規登録成功のテスト" do
         expect {
@@ -28,10 +35,17 @@ RSpec.describe "Users", type: :request do
         }.to change(User, :count).by(1)
       end
 
-      it 'users/showへのリダイレクト' do
+      it 'メールが１件存在すること' do
         post users_path, params: user_params
-        user = User.last
-        expect(response).to redirect_to user
+        expect(ActionMailer::Base.deliveries.size).to eq 1
+      end
+
+
+
+      it 'users/rootへのリダイレクト' do
+        post users_path, params: user_params
+        # user = User.last
+        expect(response).to redirect_to root_url
       end
 
       it 'flashをテストする'do

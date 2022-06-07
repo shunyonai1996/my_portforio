@@ -1,0 +1,12 @@
+
+<h1>NOMORE!仕事選びのミスマッチ！</h1>
+
+<p>ようこそ！<%= @user.name %>様</p>
+
+<p>
+  下記リンクをクリックしてアカウントの有効化を完了することができます。<br>
+  ↓↓↓↓↓↓↓↓↓↓↓↓↓
+</p>
+
+<%= link_to "アカウントを有効化",
+ edit_account_activation_url(@user.activation_token, email: @user.email) %>
