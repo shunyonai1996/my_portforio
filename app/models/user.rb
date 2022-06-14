@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -10,8 +11,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :birthday, presence: true
-  # validates :job, presence: true
-  # validates :work_span, presence: true
   has_one_attached :image
 
   class << self #Userクラスを呼び出す
@@ -56,13 +55,13 @@ class User < ApplicationRecord
   
   private
   #メールアドレスを小文字にする
-  def downcase_email
-    self.email.downcase!
-  end
+    def downcase_email
+      self.email.downcase!
+    end
   
   #有効化トークンとダイジェストを作成及び代入
-  def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end

@@ -4,6 +4,7 @@ RSpec.describe "AccountActivations", type: :request do
   describe "GET /index" do
     let(:user) { FactoryBot.create(:user) }
     let(:mail) { UserMailer.account_activation(user) }
+
     before do
       # post users_path, params: { user: { name: 'ExampleUser',
       #                                    id: ,

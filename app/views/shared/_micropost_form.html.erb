@@ -1,0 +1,24 @@
+<%= form_with(model: @micropost, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :occupation, "職種" %>
+    <%= f.text_field :occupation %>
+
+    <%= f.label :job, "職業（任意）" %>
+    <%= f.text_field :job %>
+
+    <%= f.label :time, "時間" %>
+    <%= f.time_field :time %>
+
+    <%= f.label :content, "業務内容" %>
+    <%= f.text_area :content, placeholder: "ここに入力" %>
+
+    <%= f.label :time, "時間" %>
+    <%= f.time_field :time %>
+
+    <%= f.label :content, "業務内容"%>
+    <%= f.text_area :content, placeholder: "ここに入力" %>
+
+  </div>
+  <%= f.submit "投稿", class: "btn btn-primary" %>
+<% end %>

@@ -13,7 +13,7 @@ RSpec.describe "Sessions", type: :system do
         click_button 'ログイン'
         expect(page).to have_selector 'div.alert.alert-danger'
         visit root_path
-        expect(page).to_not have_selector 'div.alert.alert-danger'
+        expect(page).not_to have_selector 'div.alert.alert-danger'
       end
     end
   end
@@ -24,7 +24,7 @@ RSpec.describe "Sessions", type: :system do
       
       it "ログイン用のプロフィールページが表示されること" do
         log_in_as(user)
-        expect(page).to_not have_selector "a[href=\"#{login_path}\"]"
+        expect(page).not_to have_selector "a[href=\"#{login_path}\"]"
         expect(page).to have_selector "a[href=\"#{logout_path}\"]"
         expect(page).to have_selector "a[href=\"#{user_path(user)}\"]"
       end

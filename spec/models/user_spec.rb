@@ -13,22 +13,22 @@ RSpec.describe User, type: :model do
 
     it 'nameが空の場合はエラー' do
       user.name = ""
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
 
     it 'nameの文字数が50文字を超えるとエラー' do
       user.name = "a" * 51
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
     
     it 'emailが空の場合はエラー' do
       user.email = ""
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
 
     it 'emailの文字数が200文字を超えるとエラー' do
       user.email = "a" * 189 + "@example.com"
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
     
     it '有効なメールフォーマットの検証' do
@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example foo@bar_baz.com foo@bar+baz.com]
       invalid_addresses.map { |invalid_address|
         user.email = invalid_address
-        expect(user).to_not be_valid, "#{invalid_address.inspect} は有効なアドレス"
+        expect(user).not_to be_valid, "#{invalid_address.inspect} は有効なアドレス"
       }
     end
 
@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
       duplicate_user = user.dup
       duplicate_user.email = user.email.upcase
       user.save!
-      expect(duplicate_user).to_not be_valid
+      expect(duplicate_user).not_to be_valid
     end
 
     it 'メールアドレスを小文字化するテスト' do
@@ -63,12 +63,12 @@ RSpec.describe User, type: :model do
 
     it 'パスワードが空でないか' do
       user.password = user.password_confirmation = " " * 6
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
     
     it 'パスワードの最小文字数が６文字以上か' do
       user.password = user.password_confirmation = "a" * 5
-      expect(user).to_not be_valid
+      expect(user).not_to be_valid
     end
   end
 

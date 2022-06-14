@@ -15,7 +15,7 @@ RSpec.describe "Sessions", type: :request do
       post login_path, params: { session: { email: user.email, password: user.password } }
       expect(logged_in?).to be_truthy
       delete logout_path
-      expect(logged_in?).to_not be_truthy
+      expect(logged_in?).not_to be_truthy
     end
 
     it '２回連続ログアウトしてもエラーにならないこと' do
@@ -28,7 +28,7 @@ RSpec.describe "Sessions", type: :request do
   describe "#create" do
     it 'remember_meがONの場合、cookies[:remember_token]が空でないこと' do
       post login_path, params: { session: { email: user.email, password: user.password, remember_me: 1 } }
-      expect(cookies[:remember_token]).to_not be_blank
+      expect(cookies[:remember_token]).not_to be_blank
     end
 
     it 'remember_meがOFFの場合、cookies[:remember_token]が空であること' do

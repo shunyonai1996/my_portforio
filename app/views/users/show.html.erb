@@ -1,24 +1,23 @@
-<h1>自分のプロフィール</h1>
+<h1>マイページ</h1>
 
-<img src="" alt="">
+<section>
+  <p>ユーザー名：<%= @user.name %></p>
+  <!-- 生年月日から年齢を逆算 -->
+  <p>年齢：<%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
+  <p><%= @user.job %></p>
+  <p><%= @user.work_span %></p>
+  <p><%= link_to "プロフィールを編集", edit_user_path(current_user) %></p>
+</section>
 
-<p>プロフィールを編集する</p>
-
-<%= @user.name %>
-<%= @user.email %>
-<!-- 生年月日から年齢を逆算 -->
-<%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>
-<%= @user.job %>
-<%= @user.work_span %>
-
-<!-- <% if @user.image.attached? %>
-  <%= image_tag @user.image %>
-<% end %> -->
-
-<p>ユーザーネーム</p>
-<p>フォロー中</p>
-<p>フォロワー</p>
-<p>フォローする</p>
+<div>
+  <% if @user.microposts.any? %>
+    <h3>投稿 (<%= @user.microposts.count %>)</h3>
+    <ol class="microposts">
+      <%= render @microposts %>
+    </ol>
+    <%= will_paginate @microposts %>
+  <% end %>
+</div>
 
 <p>詳細情報</p>
 

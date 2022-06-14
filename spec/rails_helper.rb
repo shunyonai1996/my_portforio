@@ -27,7 +27,7 @@ RSpec.configure do |config|
   require 'support/factory_bot'
   
   # テストケース共通の事前処理
-  config.before(:each) do
+  config.before do
 
     # let(:rspec_session) で指定された値を セッションの初期値とします
     session = defined?(rspec_session) ? rspec_session : {}

@@ -1,3 +1,12 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
 <p>調べる</p>
 <label for="ocuupation">職種を検索</label>
 <select name="example">
@@ -10,3 +19,5 @@
 <p>新着投稿</p>
 
 <p>user post</p>
+
+<% end %>

@@ -10,7 +10,7 @@ RSpec.describe "Users", type: :request do
                                            birthday:              "1996/10",
                                            password:              "foo",
                                            password_confirmation: "bar" } }
-        }.to_not change(User, :count)
+        }.not_to change(User, :count)
         end
       end
     end
@@ -82,17 +82,18 @@ RSpec.describe "Users", type: :request do
 
     it '一般ユーザーは管理者権限の付与ができない' do
       log_in_as(user)
-      expect(other_user.admin?).to_not be_truthy
+      expect(other_user.admin?).not_to be_truthy
       patch user_path(other_user), params: {
         user: { password:              "password",
                 password_confirmation: "password",
                 admin: true } }
-      expect(other_user.admin?).to_not be_truthy
+      expect(other_user.admin?).not_to be_truthy
     end
   end
   
   describe '#update' do
     let(:user) { FactoryBot.create(:user) }
+
     it 'ログインしていない場合、編集を更新できず、リダイレクトされる' do
       patch user_path(user)
       expect(flash[:danger]).to eq 'ログインしてください'

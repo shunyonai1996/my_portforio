@@ -1,0 +1,10 @@
+<% @micropost.each do |post| %>
+  <div class="posts-index-item">
+    <%= post.occupation %>
+    <%= post.job %>
+    <%= post.user.name %>
+    <%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+    <%= post.time.strftime('%-H時%-M分') %>
+    <%= post.content %>
+  </div>
+<% end %>

@@ -3,13 +3,13 @@
   <h2>〜仕事選びのミスマッチを滅するサービス〜</h2>
   <nav>
     <ul>
-      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "トップページ", root_path %></li>
 
       <% if logged_in? %>
         <li><%= link_to "ユーザー一覧", users_path %></li>
         <li>
           <ul>
-            <a href="#">アカウント</a>
+            <li><%= link_to "投稿する", new_micropost_path %></li>
             <li><%= link_to "プロフィール", current_user %></li>
             <li><%= link_to "プロフィールを編集", edit_user_path(current_user) %></li>
             <li>

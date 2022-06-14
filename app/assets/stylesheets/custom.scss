@@ -31,6 +31,12 @@ $gray-medium-light: #eaeaea;
   }
 }
 
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
 #session_remember_me {
   width: auto;
   margin-left: 0;
