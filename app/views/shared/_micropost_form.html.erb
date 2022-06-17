@@ -1,23 +1,61 @@
 <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.label :occupation, "職種" %>
-    <%= f.text_field :occupation %>
+    <%= f.label :occupation_id, "職種" %>
+    <%= f.collection_select :occupation_id, Occupation.all, :id, :name, include_blank: "選択してください（必須）" %>
 
     <%= f.label :job, "職業（任意）" %>
     <%= f.text_field :job %>
 
     <%= f.label :time, "時間" %>
     <%= f.time_field :time %>
-
     <%= f.label :content, "業務内容" %>
     <%= f.text_area :content, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_2, "時間" %>
+    <%= f.time_field :time_2 %>
+    <%= f.label :content_2, "業務内容"%>
+    <%= f.text_area :content_2, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_3, "時間" %>
+    <%= f.time_field :time_3 %>
+    <%= f.label :content_3, "業務内容"%>
+    <%= f.text_area :content_3, placeholder: "ここに入力" %>
 
-    <%= f.label :time, "時間" %>
-    <%= f.time_field :time %>
-
-    <%= f.label :content, "業務内容"%>
-    <%= f.text_area :content, placeholder: "ここに入力" %>
+    <%= f.label :time_4, "時間" %>
+    <%= f.time_field :time_4 %>
+    <%= f.label :content_4, "業務内容"%>
+    <%= f.text_area :content_4, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_5, "時間" %>
+    <%= f.time_field :time_5 %>
+    <%= f.label :content_5, "業務内容"%>
+    <%= f.text_area :content_5, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_6, "時間" %>
+    <%= f.time_field :time_6 %>
+    <%= f.label :content_6, "業務内容"%>
+    <%= f.text_area :content_6, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_7, "時間" %>
+    <%= f.time_field :time_7 %>
+    <%= f.label :content_7, "業務内容"%>
+    <%= f.text_area :content_7, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_8, "時間" %>
+    <%= f.time_field :time_8 %>
+    <%= f.label :content_8, "業務内容"%>
+    <%= f.text_area :content_8, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_9, "時間" %>
+    <%= f.time_field :time_9 %>
+    <%= f.label :content_9, "業務内容"%>
+    <%= f.text_area :content_9, placeholder: "ここに入力" %>
+    
+    <%= f.label :time_10, "時間" %>
+    <%= f.time_field :time_10 %>
+    <%= f.label :content_10, "業務内容"%>
+    <%= f.text_area :content_10, placeholder: "ここに入力" %>
 
   </div>
   <%= f.submit "投稿", class: "btn btn-primary" %>

@@ -23,6 +23,12 @@ User.create!(name:  name,
             activated_at: Time.zone.now)
 end
 
+10.times do |n|
+  Occupation.create!(
+    name: "職種#{n + 1}"
+  )
+end
+
 users = User.order(:created_at).take(6)
 
 def rand_str
@@ -33,5 +39,9 @@ rand_time = "#{rand_str}:#{rand_str}"
 
 50.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(occupation: '営業職', job: 'トヨタ自動車' ,time: rand_time, content: content ) }
+  content_2 = Faker::Lorem.sentence(word_count: 5)
+  content_3 = Faker::Lorem.sentence(word_count: 5)
+  content_4 = Faker::Lorem.sentence(word_count: 5)
+  content_5 = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.microposts.create!(occupation_id: 1, job: 'トヨタ自動車' ,time: rand_time ,time_2: rand_time ,time_3: rand_time ,time_4: rand_time ,time_5: rand_time ,time_6: rand_time ,time_7: rand_time ,time_8: rand_time ,time_9: rand_time ,time_10: rand_time, content: content, content_2: content_2, content_3: content_3, content_4: content_4, content_5: content_5 ) }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_021456) do
+ActiveRecord::Schema.define(version: 2022_06_16_115238) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -48,8 +48,34 @@ ActiveRecord::Schema.define(version: 2022_06_12_021456) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "content_2"
+    t.text "content_3"
+    t.text "content_4"
+    t.text "content_5"
+    t.text "content_6"
+    t.text "content_7"
+    t.text "content_8"
+    t.text "content_9"
+    t.text "content_10"
+    t.time "time_2"
+    t.time "time_3"
+    t.time "time_4"
+    t.time "time_5"
+    t.time "time_6"
+    t.time "time_7"
+    t.time "time_8"
+    t.time "time_9"
+    t.time "time_10"
+    t.bigint "occupation_id"
+    t.index ["occupation_id"], name: "index_microposts_on_occupation_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "occupations", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.bigint "micropost_id"
+    t.index ["micropost_id"], name: "index_occupations_on_micropost_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -71,5 +97,7 @@ ActiveRecord::Schema.define(version: 2022_06_12_021456) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "microposts", "occupations"
   add_foreign_key "microposts", "users"
+  add_foreign_key "occupations", "microposts"
 end
