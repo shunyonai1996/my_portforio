@@ -1,3 +1,3 @@
 class Occupation < ApplicationRecord
-  has_one :micropost
+  has_many :microposts, dependent: :destroy
 end

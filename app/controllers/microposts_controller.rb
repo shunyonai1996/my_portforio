@@ -2,9 +2,7 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
 
   def index
-    @search_params = search
     @users = User.where(activated: true)
-    # @micropost = current_user.microposts.build if logged_in?
     @micropost = Micropost.all.order(created_at: :desc).limit(15)
   end
 
@@ -26,7 +24,12 @@ class MicropostsController < ApplicationController
   end
 
   def search
-    params.fetch(:search, {}).permit(:occupation_id, :job)
+    if params[:job].present?
+      @microposts = Micropost.where("job LIKE ?", "%#{params[:job]}%").paginate(page: params[:page])
+    else
+      flash[:danger] = "検索結果にマッチする投稿がありません"
+      redirect_to root_path
+    end
   end
 
   private

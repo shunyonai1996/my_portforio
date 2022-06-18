@@ -1,0 +1,54 @@
+<%= form_with url: search_microposts_path, method: :get, local: true do |f| %>
+  <%= f.collection_select :job, Micropost.all, :job, :job, include_blank: "職種を選択" %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<tbody>
+  <% @microposts.each do |post| %>
+      <div>
+        <%= post.user.name %>
+        職種：<%= post.occupation.name %>
+        職業：<%= post.job %>
+      </div>
+  
+      <div>
+        投稿日：<%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+      </div>
+  
+      <div>
+        <%= post.time.strftime('%-H時%-M分') %>
+        <%= post.content %>
+      </div>
+  
+      <div>
+        <%= post.time_2.strftime('%-H時%-M分') if post.time_2 %>
+        <%= post.content_2 %>
+      </div>
+  
+      <div>
+        <%= post.time_3.strftime('%-H時%-M分') if post.time_3 %>
+        <%= post.content_3 %>
+      </div>
+  
+      <div>
+        <%= post.time_4.strftime('%-H時%-M分') if post.time_4 %>
+        <%= post.content_4 %>
+      </div>
+  
+      <%= post.time_5.strftime('%-H時%-M分') if post.time_5 %>
+      <%= post.content_5 %>
+      <%= post.time_6.strftime('%-H時%-M分') if post.time_6 %>
+      <%= post.content_6 %>
+      <%= post.time_7.strftime('%-H時%-M分') if post.time_7 %>
+      <%= post.content_7 %>
+      <%= post.time_8.strftime('%-H時%-M分') if post.time_8 %>
+      <%= post.content_8 %>
+      <%= post.time_9.strftime('%-H時%-M分') if post.time_9 %>
+      <%= post.content_9 %>
+      <%= post.time_10.strftime('%-H時%-M分') if post.time_10 %>
+      <%= post.content_10 %>
+      <%=  %>
+    </div>
+    <% end %>
+  </tbody>
+  <%= will_paginate %>
