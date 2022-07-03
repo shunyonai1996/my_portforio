@@ -1,11 +1,14 @@
-<h1>マイページ</h1>
+<% if current_user?(@user) %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1><%= @user.name %>さんのページ</h1>
+<% end %>
 
 <section>
   <p>ユーザー名：<%= @user.name %></p>
   <!-- 生年月日から年齢を逆算 -->
   <p>年齢：<%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
-  <p><%= @user.job %></p>
-  <p><%= @user.work_span %></p>
+  <p>自己紹介：<%= @user.biography %></p>
   <p><%= link_to "プロフィールを編集", edit_user_path(current_user) %></p>
 </section>
 
@@ -18,7 +21,5 @@
     <%= will_paginate @microposts %>
   <% end %>
 </div>
-
-<p>詳細情報</p>
 
 <p>アカウントを削除</p>

@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="nested-fields-block">
+    <%= f.label :time, "時間" %>
+    <%= f.time_field :time %>
+  </div>
+
+  <div class="nested-fields-block">
+    <%= f.label :content, "内容" %>
+    <%= f.text_area :content, class: "content-width" %>
+  </div>
+  <%= link_to_remove_association "クリックして削除", f %>
+</div>

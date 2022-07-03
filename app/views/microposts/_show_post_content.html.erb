@@ -1,0 +1,33 @@
+<div class="posts-index-item col-12">
+  <div class="posts-box">
+
+    <div>
+      <a href="/users/<%= @micropost.user.id %>"><%= @micropost.user.name %></a>
+    </div>
+
+    <div class="basic-info ">
+      <p class="basic-info-item">職種：<%= @micropost.occupation.name %></p>
+      <p class="basic-info-item">職業：<%= @micropost.job %></p>
+      <p class="basic-info-item">時期：<%= @micropost.busyness %></p>
+    </div>
+
+    <div>
+      <p>投稿日：<%= @micropost.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p>
+    </div>
+
+    <div>
+      <p>スケジュールと職務内容</p>
+      <% @micropost.job_discriptions.each do | discription | %>
+        <div class="discription-area col-12">
+          <p><%= discription.time.strftime( "%H時%M分" ) %></p>
+          <p><%= discription.content %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <p>補足じょうほうが表示されないぞ？</p>
+      <p><%= @micropost.complement %></p>
+    </div>
+  </div>
+</div>

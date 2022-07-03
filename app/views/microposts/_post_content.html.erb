@@ -1,0 +1,44 @@
+<% @microposts.each do |post| %>
+  <div class="posts-index-item col-12">
+    <div class="posts-box">
+
+      <div>
+        <a href="/users/<%= post.user.id %>"><%= post.user.name %></a>
+      </div>
+  
+      <div class="basic-info ">
+        <p class="basic-info-item">職種：<%= post.occupation.name %></p>
+        <p class="basic-info-item">職業：<%= post.job %></p>
+        <p class="basic-info-item">時期：<%= post.busyness %></p>
+      </div>
+  
+      <div>
+        <p>投稿日：<%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p>
+      </div>
+  
+      <div>
+        <p>スケジュールと職務内容</p>
+        <% post.job_discriptions.each do |discription| %>
+          <div class="discription-area col-12">
+            <p><%= discription.time.strftime( "%H時%M分" ) %></p>
+            <p><%= discription.content %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="complement">
+        <p>補足情報：<%= post.complement %></p>
+      </div>
+      
+      <div class="reaction-area">
+        <div id="likes_buttons_<%= post.id %>">
+          <p><%= render partial: 'likes/like', locals: { micropost: post, likes: @likes} %></p>
+        </div>
+        <div>
+          <a href="/microposts/<%= post.id %>"><%= 'コメントする' %></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>

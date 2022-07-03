@@ -6,11 +6,14 @@ ruby '3.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 gem 'bootstrap-sass', '3.4.1'
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons' 
 # Use sqlite3 as the database for Active Record
 gem 'bcrypt', '~> 3.1.13'
 gem 'faker', '2.20.0'
 gem 'will_paginate', '3.3.1'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'cocoon'
 gem 'sqlite3', '~> 1.4'
 
 gem 'mysql2'
@@ -49,9 +52,10 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'web-console', '>= 4.1.0'
-  gem 'rubocop', require: false
+  gem 'pre-commit'
+  gem 'rubocop'
   gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md

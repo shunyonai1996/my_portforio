@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,   only: :destroy
-
+  
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
   end
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated?
     @microposts = @user.microposts.paginate(page: params[:page])
+    @job_discription = JobDiscription.find(params[:id])
   end
   
   def new
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :birthday, :job, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :birthday, :biography, :password_confirmation)
     end
 
   #正しいユーザか確認

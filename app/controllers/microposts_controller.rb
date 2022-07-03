@@ -4,7 +4,7 @@ class MicropostsController < ApplicationController
 
   def index
     @users = User.where(activated: true)
-    @micropost = Micropost.all.order(created_at: :desc).limit(15)
+    @microposts = Micropost.all.order(created_at: :desc).limit(15)
   end
 
   def create
@@ -21,6 +21,13 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build if logged_in?
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @job_discription = JobDiscription.find(params[:id])
+    @comments = @micropost.comments
+    @comment = current_user.comments.new
+  end
+
   def destroy
     @micropost.destroy
     flash[:success] = "投稿を削除しました"
@@ -29,17 +36,23 @@ class MicropostsController < ApplicationController
 
   def search
     if params[:id].present?
+      @occupation = Occupation.find(params[:id])
       @microposts = Micropost.where("occupation_id LIKE ?", "%#{params[:id]}%").paginate(page: params[:page])
-      # @microposts = Micropost.where("job LIKE ?", "%#{params[:occupation_id]}%").paginate(page: params[:page])
     else
       flash[:danger] = "職種を選択してください"
-      redirect_to root_path
+      redirect_to request.referrer || root_path
     end
   end
 
   private
     def micropost_params
-      params.require(:micropost).permit(:occupation_id, :job, :content, :content_2, :content_3, :content_4, :content_5, :content_6, :content_7, :content_8, :content_9, :content_10, :time, :time_2, :time_3, :time_4, :time_5, :time_6, :time_7, :time_8, :time_9, :time_10)
+      params.require(:micropost).permit(:occupation_id, :job, :busyness, :seniority_year, :complement,
+      job_discriptions_attributes: [
+        :id,
+        :content,
+        :time,
+        :_destroy
+      ])
     end
 
     def correct_user

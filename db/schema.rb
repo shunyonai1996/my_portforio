@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_115238) do
+ActiveRecord::Schema.define(version: 2022_07_02_071714) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -40,33 +40,45 @@ ActiveRecord::Schema.define(version: 2022_06_16_115238) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", charset: "utf8mb3", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "micropost_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_comments_on_micropost_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "job_discriptions", charset: "utf8mb3", force: :cascade do |t|
+    t.text "content"
+    t.time "time"
+    t.bigint "micropost_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_job_discriptions_on_micropost_id"
+  end
+
+  create_table "likes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "micropost_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "microposts", charset: "utf8mb3", force: :cascade do |t|
     t.string "occupation"
     t.string "job"
-    t.time "time"
-    t.text "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "content_2"
-    t.text "content_3"
-    t.text "content_4"
-    t.text "content_5"
-    t.text "content_6"
-    t.text "content_7"
-    t.text "content_8"
-    t.text "content_9"
-    t.text "content_10"
-    t.time "time_2"
-    t.time "time_3"
-    t.time "time_4"
-    t.time "time_5"
-    t.time "time_6"
-    t.time "time_7"
-    t.time "time_8"
-    t.time "time_9"
-    t.time "time_10"
     t.bigint "occupation_id"
+    t.string "busyness"
+    t.string "seniority_year"
+    t.text "complement"
+    t.integer "likes_count", default: 0
     t.index ["occupation_id"], name: "index_microposts_on_occupation_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
@@ -83,8 +95,6 @@ ActiveRecord::Schema.define(version: 2022_06_16_115238) do
     t.string "email"
     t.string "password"
     t.date "birthday"
-    t.string "job"
-    t.integer "work_span"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
@@ -93,10 +103,16 @@ ActiveRecord::Schema.define(version: 2022_06_16_115238) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.string "biography"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "microposts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "job_discriptions", "microposts"
+  add_foreign_key "likes", "microposts"
+  add_foreign_key "likes", "users"
   add_foreign_key "microposts", "occupations"
   add_foreign_key "microposts", "users"
   add_foreign_key "occupations", "microposts"

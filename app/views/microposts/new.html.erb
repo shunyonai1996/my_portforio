@@ -1,11 +1,45 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="micropost_form">
-        <%= render "shared/micropost_form" %>
-      </section>
-    </aside>
+  <%= form_with(model: @micropost, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field" >
+
+    <div class="field-item">
+      <%= f.label :occupation_id, "職種" %>
+      <%= f.collection_select :occupation_id, Occupation.all, :id, :name, include_blank: "選択してください（必須）" %>
+    </div>
+
+    <div class="field-item">
+      <%= f.label :job, "職業（任意）" %>
+      <%= f.text_field :job %>
+    </div>
+    
+    <div class="field-item">
+      <%= f.label :busyness, "忙しさ" %>
+      <%= f.select :busyness, [["繁忙期", "繁忙期"], ["通常期", "通常期"], ["閑散期", "閑散期"]] %>
+    </div>
+    
+    <div class="field-item">
+      <%= f.label :seniority_year,  "勤続年数" %>
+      <%= f.select :seniority_year, [["１年未満", "１年未満"], ["１年以上〜３年未満"], ["１年以上〜３年未満"], ["３年以上〜５年未満"], ["３年以上〜５年未満"], ["１０年以上"], ["１０年以上"]] %>
+    </div>
+      
+    <div class="field-item">
+      <%= link_to_add_association 'クリックして追加', f, :job_discriptions, data: { association_insertion_method: 'append' } %>
+      <%= f.fields_for :job_discriptions do |discription| %>
+        <%= render "job_discription_fields", f: discription %>
+      <% end %>
+    </div>
+    
+    <div class="field-item">
+      <%= f.label :complement, "補足" %>
+      <%= f.text_field :complement %>
+    </div>
   </div>
-<% else %>
-<p>ログインしてください</p>
-<% end %>
+
+  <%= f.submit "投稿", class: "btn btn-primary" %>
+
+  <% end %>
+
+  <% else %>
+    <p>ログインしてください</p>
+  <% end %>

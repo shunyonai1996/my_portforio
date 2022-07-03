@@ -9,7 +9,7 @@ User.create!(name:  "TestUser",
             activated_at: Time.zone.now)
 
 # 追加のユーザーをまとめて生成する
-99.times do |n|
+32.times do |n|
 name  = Faker::Name.name
 email = "sample-#{n+1}@example.com"
 birthday = "1996-10-28"
@@ -23,25 +23,15 @@ User.create!(name:  name,
             activated_at: Time.zone.now)
 end
 
-10.times do |n|
-  Occupation.create!(
-    name: "職種#{n + 1}"
-  )
-end
+occupations = [ {name: '食品・農林・水産'}, {name: '建設・住宅・インテリア'}, {name: '繊維・化学・薬品・化粧品'}, {name: '鉄鋼・金属・鉱業'}, {name: '機械・プラント'}, {name: '電子・電気機器'}, {name: '自動車・転送用機器'}, {name: '精密・医療用機器'}, {name: '印刷・事務機器関連'}, {name: 'スポーツ・玩具'}, {name: 'その他メーカー'}, {name: '総合商社'}, {name: '専門商社'}, {name: '百貨店・スーパー'}]
+
+Occupation.create!(occupations)
 
 users = User.order(:created_at).take(6)
 
-def rand_str
-  num = (0...60).to_a.sample
-  num < 10 ? "0#{num}" : num.to_s
-end
-rand_time = "#{rand_str}:#{rand_str}"
-
-50.times do
+32.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  content_2 = Faker::Lorem.sentence(word_count: 5)
-  content_3 = Faker::Lorem.sentence(word_count: 5)
-  content_4 = Faker::Lorem.sentence(word_count: 5)
-  content_5 = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(occupation_id: 1, job: 'トヨタ自動車' ,time: rand_time ,time_2: rand_time ,time_3: rand_time ,time_4: rand_time ,time_5: rand_time ,time_6: rand_time ,time_7: rand_time ,time_8: rand_time ,time_9: rand_time ,time_10: rand_time, content: content, content_2: content_2, content_3: content_3, content_4: content_4, content_5: content_5 ) }
+  
+
+  users.each { |user| user.microposts.create!(occupation_id: 1, job: 'トヨタ自動車' ,busyness: '繁忙期', seniority_year: '１年未満', likes_count: 0, job_discriptions_attributes:[content: content, time: '08:30'] ) }
 end

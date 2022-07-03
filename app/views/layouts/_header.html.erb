@@ -1,25 +1,20 @@
-<header style="background-color: beige;">
-  <h1>Clear Job</h1>
-  <h2>〜仕事選びのミスマッチを滅するサービス〜</h2>
-  <nav>
-    <ul>
-      <li><%= link_to "トップページ", root_path %></li>
+<header class="p-3 mb-2 bg-info text-white">
+
+  <h1>You Can See Everything</h1>
+  <h2>なりたい職業の、全てが観える</h2>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="nav">
+      <li class="nav-item"><%= link_to "トップページ", root_path %></li>
 
       <% if logged_in? %>
-        <li><%= link_to "ユーザー一覧", users_path %></li>
-        <li>
-          <ul>
-            <li><%= link_to "投稿する", new_micropost_path %></li>
-            <li><%= link_to "プロフィール", current_user %></li>
-            <li><%= link_to "プロフィールを編集", edit_user_path(current_user) %></li>
-            <li>
-              <%= link_to "ログアウト", logout_path, method: :delete %>
-            </li>
-          </ul>
-        </li>
+        <li class="nav-item"><%= link_to "ユーザー一覧", users_path %></li>
+        <li class="nav-item"><%= link_to "投稿する", new_micropost_path %></li>
+        <li class="nav-item"><%= link_to "プロフィール", current_user %></li>
+        <li class="nav-item"><%= link_to "プロフィールを編集", edit_user_path(current_user) %></li>
+        <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to "ログイン", login_path %></li>
-        <li><%= link_to "新規登録", signup_path %></li>
+        <li class="nav-item"><%= link_to "ログイン", login_path %></li>
+        <li class="nav-item"><%= link_to "新規登録", signup_path %></li>
       <% end %>
     </ul>
   </nav>

@@ -1,0 +1,7 @@
+<h2 style="text-align: center;">職業を検索</h2>
+<%= form_with url: search_microposts_path, method: :get, local: true do |f| %>
+  <div class="search-form">
+    <%= f.collection_select :id, Occupation.all, :id, :name, include_blank: "職種を選択" %>
+    <%= f.submit "検索" %>
+  </div>
+<% end %>
