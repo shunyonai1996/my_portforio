@@ -1,7 +1,13 @@
 <% if logged_in? %>
+
   <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field" >
+
+    <div class="field-item">
+      <%= f.label :industry_id, "業界" %>
+      <%= f.collection_select :industry_id, Industry.all, :id, :name, include_blank: "選択してください（必須）" %>
+    </div>
 
     <div class="field-item">
       <%= f.label :occupation_id, "職種" %>
@@ -34,9 +40,12 @@
       <%= f.label :complement, "補足" %>
       <%= f.text_field :complement %>
     </div>
+    
+    
+    <div class="field-item">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
   </div>
-
-  <%= f.submit "投稿", class: "btn btn-primary" %>
 
   <% end %>
 

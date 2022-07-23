@@ -1,3 +1,4 @@
 class Occupation < ApplicationRecord
-  has_many :microposts, dependent: :destroy
+  belongs_to :industry
+  has_many :microposts
 end

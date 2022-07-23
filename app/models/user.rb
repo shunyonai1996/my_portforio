@@ -1,6 +1,15 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  #userがフォローされている人、followがフォローしてる人
+  has_many :followings, through: :relationships, source: :follow
+  has_many :followers, through: :reverse_of_relationships, source: :user
+
+  has_one_attached :image
   attr_accessor :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -12,7 +21,9 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :birthday, presence: true
-  has_one_attached :image
+
+  #画像アップロードのための記述
+  mount_uploader :avatar, AvatarUploader
 
   class << self #Userクラスを呼び出す
     #渡された文字列のハッシュを返す
@@ -52,6 +63,21 @@ class User < ApplicationRecord
   #有効化用のメールを送信する
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  #フォロー機能のメソッドを記述
+  def follow(user_id)
+    unless self == user_id
+      relationships.create(follow_id: user_id)
+    end
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(follow_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
   
   private

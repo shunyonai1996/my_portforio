@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless @user.activated?
     @microposts = @user.microposts.paginate(page: params[:page])
     @job_discription = JobDiscription.find(params[:id])
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
   
   def new
@@ -46,9 +47,21 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def guest_sign_in
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+      user.birthday = "19961028"
+    end
+    session[:user_id] = user.id
+    flash[:success] = "ゲストユーザーとしてログインしました"
+    redirect_to root_path
+  end
+
+
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :birthday, :biography, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :birthday, :biography, :avatar, :remove_avatar,  :password_confirmation)
     end
 
   #正しいユーザか確認

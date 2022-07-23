@@ -1,0 +1,7 @@
+<div>
+  <% if @micropost.bookmarked_by?(current_user) %>
+    <p><%= link_to "ブックマークを解除", micropost_bookmark_path(@micropost), method: :delete %></p>
+  <% else %>
+    <p><%= link_to "ブックマークする", micropost_bookmarks_path(@micropost), method: :create %></p>
+  <% end %>
+</div>

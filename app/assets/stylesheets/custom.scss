@@ -4,17 +4,24 @@
 // カスケード変数
 $custom-width: 650px;
 
+//全般
+.container {
+  background-color: floralwhite;
+}
+
+img {
+  border-radius: 50px;
+  max-width: 100px;
+  min-width: 20%;
+}
+
+
 /* header, footer */
 
 header {
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
-}
-
-
-.container {
-  background-color: floralwhite;
 }
 
 /* mixins, variables, etc. */
@@ -37,7 +44,28 @@ $gray-medium-light: #eaeaea;
   @include box_sizing;
 }
 
-/* forms */
+/* profile */
+.profile-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.profile-area {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img-area {
+  display: flex;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.profile-post-area {
+  padding: 0px;
+}
+
+/* search form */
 .search-form {
   max-width: $custom-width;
   margin-right: auto;
@@ -47,6 +75,10 @@ $gray-medium-light: #eaeaea;
   background-color: darksalmon;
   border-radius: 20px;
   select {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
     width: 270px;
     height: 50px;
     border-radius: 20px;
@@ -54,6 +86,10 @@ $gray-medium-light: #eaeaea;
     border: floralwhite;
   }
   input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     width: 80px;
     height: 40px;
     border-radius: 20px;
@@ -73,7 +109,6 @@ $gray-medium-light: #eaeaea;
     font-weight: normal;
   }
 }
-
 
 // new post form
 .field {
@@ -113,6 +148,7 @@ $gray-medium-light: #eaeaea;
     input, select {
       padding: 6px;
       min-width: 300px;
+      max-width: 350px;
       height: 40px;
       border-radius: 10px;
       border-color: black;
@@ -120,7 +156,7 @@ $gray-medium-light: #eaeaea;
     }
     textarea {
       padding: 6px;
-      min-width: 200px;
+      min-width: 280px;
       height: 100px;
       border-radius: 10px;
       border-color: black;
@@ -131,8 +167,6 @@ $gray-medium-light: #eaeaea;
     }
 }
 
-
-
 .content-width {
   display: inline-block;
   width: 100%;
@@ -142,6 +176,23 @@ $gray-medium-light: #eaeaea;
   width: auto;
   margin-left: 0;
 }
+
+/* comment form */
+.comment-form {
+  text-align: center;
+  .btn {
+    margin-bottom: 30px;
+  }
+  textarea {
+    width: 250px;
+  }
+  input {
+    width: 200px;
+    height: 30px;
+  }
+}
+
+
 
 /* post index forms */
 .posts-index-item {
@@ -190,4 +241,3 @@ $gray-medium-light: #eaeaea;
     }
   }
 }
-

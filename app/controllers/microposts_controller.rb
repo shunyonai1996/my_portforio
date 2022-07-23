@@ -5,6 +5,7 @@ class MicropostsController < ApplicationController
   def index
     @users = User.where(activated: true)
     @microposts = Micropost.all.order(created_at: :desc).limit(15)
+    gon.industries = Industry.all.to_json only: %i[id name]
   end
 
   def create
@@ -26,6 +27,7 @@ class MicropostsController < ApplicationController
     @job_discription = JobDiscription.find(params[:id])
     @comments = @micropost.comments
     @comment = current_user.comments.new
+    @user = User.where(params[:id])
   end
 
   def destroy
@@ -38,6 +40,7 @@ class MicropostsController < ApplicationController
     if params[:id].present?
       @occupation = Occupation.find(params[:id])
       @microposts = Micropost.where("occupation_id LIKE ?", "%#{params[:id]}%").paginate(page: params[:page])
+      gon.industries = Industry.all.to_json only: %i[id name]
     else
       flash[:danger] = "職種を選択してください"
       redirect_to request.referrer || root_path
@@ -46,7 +49,7 @@ class MicropostsController < ApplicationController
 
   private
     def micropost_params
-      params.require(:micropost).permit(:occupation_id, :job, :busyness, :seniority_year, :complement,
+      params.require(:micropost).permit(:industry_id, :occupation_id, :job, :busyness, :seniority_year, :complement,
       job_discriptions_attributes: [
         :id,
         :content,

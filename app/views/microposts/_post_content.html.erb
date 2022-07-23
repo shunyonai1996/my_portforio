@@ -3,10 +3,14 @@
     <div class="posts-box">
 
       <div>
-        <a href="/users/<%= post.user.id %>"><%= post.user.name %></a>
+        <% if logged_in? %>
+          <a href="/users/<%= post.user.id %>"><%= post.user.name %></a>
+        <% else %>
+          <%= post.user.name %>
+        <% end %>
       </div>
   
-      <div class="basic-info ">
+      <div class="basic-info">
         <p class="basic-info-item">職種：<%= post.occupation.name %></p>
         <p class="basic-info-item">職業：<%= post.job %></p>
         <p class="basic-info-item">時期：<%= post.busyness %></p>
@@ -34,9 +38,15 @@
         <div id="likes_buttons_<%= post.id %>">
           <p><%= render partial: 'likes/like', locals: { micropost: post, likes: @likes} %></p>
         </div>
+
         <div>
-          <a href="/microposts/<%= post.id %>"><%= 'コメントする' %></a>
+          <% if logged_in? %>
+            <a href="/microposts/<%= post.id %>"><%= '詳細ページへ' %></a>
+          <% else %>
+            <%= '※ログインか新規登録で詳細ページへ' %>
+          <% end %>
         </div>
+
       </div>
 
     </div>

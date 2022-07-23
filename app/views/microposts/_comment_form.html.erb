@@ -1,7 +1,26 @@
-<%= form_with( model:[@micropost, @comment], method: :post) do |f| %>
-  <%= f.label :comment, 'コメント内容' %>
-  <%= f.text_field :comment %>
+<h3>コメント</h3>
+<% if @micropost.comments.any? %>
+  <% @comments.each do |c| %>
+    <div>
+      <a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+      <%= c.comment %>
+      <% if current_user.id == c.user.id %>
+        <%= link_to "削除", micropost_comment_path(@micropost, c), method: :delete %>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>コメントがありません</p>
+<% end %>
+
+<%= form_with( model:[@micropost, @comment], method: :post, class:"comment-form") do |f| %>
+  <div>
+    <%= f.text_area :comment %>
+  </div>
   <%= f.hidden_field :micropost_id, value: @micropost.id %>
   <%= f.hidden_field :user_id, value: @comment.user_id %>
-  <%= f.submit 'コメントする' %>
+  <div class="btn">
+    <%= f.submit 'コメントする' %>
+  </div>
 <% end %>

@@ -1,0 +1,25 @@
+class RelationshipsController < ApplicationController
+
+  def create
+    current_user.follow(params[:user_id])
+    flash[:success] = 'ユーザーをフォローしました'
+    redirect_to request.referrer
+  end
+
+  def destroy
+    current_user.unfollow(params[:user_id])
+    flash[:success] = 'ユーザーのフォローを解除しました'
+    redirect_to request.referrer
+  end
+
+  def followings
+    user = User.find(params[:user_id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find(params[:user_id])
+    @users = user.followers
+  end
+
+end

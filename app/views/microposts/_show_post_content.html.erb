@@ -2,7 +2,7 @@
   <div class="posts-box">
 
     <div>
-      <a href="/users/<%= @micropost.user.id %>"><%= @micropost.user.name %></a>
+      <p><a href="/users/<%= @micropost.user.id %>"><%= @micropost.user.name %></a>さんの投稿</p>
     </div>
 
     <div class="basic-info ">
@@ -26,8 +26,17 @@
     </div>
 
     <div>
-      <p>補足じょうほうが表示されないぞ？</p>
-      <p><%= @micropost.complement %></p>
+      <p>補足情報：<%= @micropost.complement %></p>
     </div>
+
+    <div class="reaction-area">
+      <div id="likes_buttons_<%= @micropost.id %>">
+        <p><%= render partial: 'likes/like', locals: { micropost: @micropost, likes: @likes} %></p>
+      </div>
+      <%= render partial: 'bookmarks/bookmark' %>
+
+      
+    </div>
+
   </div>
 </div>

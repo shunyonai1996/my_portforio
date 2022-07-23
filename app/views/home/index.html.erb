@@ -1,0 +1,7 @@
+<%= form_with id: 'example_form' do |f| %>
+  <%= f.select :prefecture, [] %>
+  <%= f.select :city, [] %>
+  <%= f.submit '検索' %>
+<% end %>
+
+<%= javascript_pack_tag 'hello_vue' %>

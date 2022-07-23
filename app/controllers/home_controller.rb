@@ -1,13 +1,6 @@
 class HomeController < ApplicationController
   
-  def top
-    @micropost = current_user.microposts.build if logged_in?
+  def index
+    gon.industries = Industry.all.to_json only: %i[id name]
   end
-
-  def policy
-  end
-
-  def terms
-  end
-
 end

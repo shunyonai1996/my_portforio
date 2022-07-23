@@ -121,6 +121,11 @@ GEM
     formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gon (6.4.0)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
     guard (2.16.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -134,6 +139,7 @@ GEM
     guard-minitest (2.4.6)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    high_voltage (3.1.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -167,6 +173,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.5.1)
+    multi_json (1.15.0)
     mysql2 (0.5.4)
     nenv (0.3.0)
     net-imap (0.2.3)
@@ -244,6 +251,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.4.0)
+    request_store (1.5.1)
+      rack (>= 1.4)
     rexml (3.2.5)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
@@ -360,8 +369,10 @@ DEPENDENCIES
   cocoon
   factory_bot_rails
   faker (= 2.20.0)
+  gon
   guard (= 2.16.2)
   guard-minitest (= 2.4.6)
+  high_voltage
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)

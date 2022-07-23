@@ -1,0 +1,15 @@
+<section>
+  <% if current_user?(@user) %>
+    <% if @bookmarks.present? %>
+      <p>ブックマークした投稿</p>
+      <% @bookmarks.each do |bookmark| %>
+        <%= link_to micropost_path(bookmark.micropost) do %>
+          <p><%= bookmark.micropost.user.name %></p>
+          <p><%= bookmark.micropost.industry.name %></p>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>ブックマークした投稿はありません</p>
+    <% end %>
+  <% end %>
+</section>

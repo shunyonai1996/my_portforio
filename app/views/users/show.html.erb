@@ -1,22 +1,50 @@
-<% if current_user?(@user) %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1><%= @user.name %>さんのページ</h1>
-<% end %>
+<section class="profile-container">
+  <div class="profile-area">
+    <div class="profile-img-area">
+      <% if @user.avatar? %>
+        <div class="profile-img-area">
+          <%= image_tag @user.avatar.url %>
+        </div>
+      <% else %>
+        <div>
+          <%= image_tag ("default.jpg") %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div>
+      <div class="basic-info">
 
-<section>
-  <p>ユーザー名：<%= @user.name %></p>
-  <!-- 生年月日から年齢を逆算 -->
-  <p>年齢：<%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
-  <p>自己紹介：<%= @user.biography %></p>
-  <p><%= link_to "プロフィールを編集", edit_user_path(current_user) %></p>
+        <p class="basic-info-item"><%= @user.name %></p>
+        <!-- 生年月日から年齢を逆算 -->
+        <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
+        <% if current_user?(@user) %>
+          <%= link_to "プロフィールを編集", edit_user_path(current_user) %>
+        <% end %>
+
+      </div>
+
+      <p class="basic-info-item">投稿数 (<%= @user.microposts.count %>)</p>
+
+      <%= render partial: 'relationships/follows_count' %>
+      
+      <div>
+        <%= link_to "ブックマーク一覧", user_bookmarklist_path(current_user) %>
+      </div>
+      
+      <p>自己紹介：<%= @user.biography %></p>
+      
+    <%= render partial: 'relationships/follow_button' %>
+    
+    
+    </div>
+  </div>
 </section>
 
 <div>
   <% if @user.microposts.any? %>
-    <h3>投稿 (<%= @user.microposts.count %>)</h3>
-    <ol class="microposts">
-      <%= render @microposts %>
+    <ol class="profile-post-area">
+      <%= render 'microposts/post_content' %>
     </ol>
     <%= will_paginate @microposts %>
   <% end %>

@@ -1,3 +1,29 @@
+require 'csv'
+
+# CSV読み込み
+file_path = 'db/industry_data.csv'
+csv_data = CSV.read(file_path)
+
+# 大項目データ抽出
+industries_list = csv_data.map { |row| row[2] }.uniq
+
+# 小項目データ抽出
+occupations_list = csv_data.map do |row|
+    next if row[2] == nil
+    row[2, 3]
+  end.compact
+
+# 大項目データ作成
+industries_list.each do |industry|
+  Industry.create!(name: industry)
+end
+
+# 小項目データ作成
+occupations_list.each do |industry, occupation|
+  industry = Industry.find_by(name: industry)
+  industry.occupations.create(name: occupation)
+end
+
 # メインのサンプルユーザーを1人作成する
 User.create!(name:  "TestUser",
             email: "sample@example.com",
@@ -23,15 +49,11 @@ User.create!(name:  name,
             activated_at: Time.zone.now)
 end
 
-occupations = [ {name: '食品・農林・水産'}, {name: '建設・住宅・インテリア'}, {name: '繊維・化学・薬品・化粧品'}, {name: '鉄鋼・金属・鉱業'}, {name: '機械・プラント'}, {name: '電子・電気機器'}, {name: '自動車・転送用機器'}, {name: '精密・医療用機器'}, {name: '印刷・事務機器関連'}, {name: 'スポーツ・玩具'}, {name: 'その他メーカー'}, {name: '総合商社'}, {name: '専門商社'}, {name: '百貨店・スーパー'}]
-
-Occupation.create!(occupations)
-
 users = User.order(:created_at).take(6)
 
 32.times do
   content = Faker::Lorem.sentence(word_count: 5)
   
 
-  users.each { |user| user.microposts.create!(occupation_id: 1, job: 'トヨタ自動車' ,busyness: '繁忙期', seniority_year: '１年未満', likes_count: 0, job_discriptions_attributes:[content: content, time: '08:30'] ) }
+  users.each { |user| user.microposts.create!(occupation_id: 1, industry_id: 1, job: 'トヨタ自動車' ,busyness: '繁忙期', seniority_year: '１年未満', likes_count: 0, job_discriptions_attributes:[content: content, time: '08:30'] ) }
 end

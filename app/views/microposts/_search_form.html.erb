@@ -1,7 +1,28 @@
 <h2 style="text-align: center;">職業を検索</h2>
+
+<!-- 元々の実装箇所 -->
 <%= form_with url: search_microposts_path, method: :get, local: true do |f| %>
+<div class="search-form">
+  <%= f.collection_select :id, Industry.all, :id, :name, include_blank: "業界を選択" %>
+  <%= f.collection_select :id, Occupation.all, :id, :name, include_blank: "職種を選択" %>
+  <%= f.submit "検索" %>
+</div>
+<% end %>
+<!-- ここまで -->
+
+
+<%= form_with url: search_microposts_path, method: :get, id: 'example_form' do |f| %>
   <div class="search-form">
-    <%= f.collection_select :id, Occupation.all, :id, :name, include_blank: "職種を選択" %>
-    <%= f.submit "検索" %>
+    <%= f.select :industry, nil, {}, {'v-model': 'selectedIndust', '@change': 'getOccupations(selectedIndust)'} do %>
+      <option v-for="industry in industries" :key="industry.name" :value="industry.id">
+        {{industry.name}}
+      </option>
+    <% end %>
+    <%= f.select :occupation do %>
+      <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">{{occupation.name}}</option>
+    <% end %>
+    <%= f.submit '検索' %>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'hello_vue' %>
