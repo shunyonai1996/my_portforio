@@ -30,9 +30,7 @@ User.create!(name:  "TestUser",
             birthday: "1996-10-28",
             password:              "foobar",
             password_confirmation: "foobar",
-            admin: true,
-            activated: true,
-            activated_at: Time.zone.now)
+            admin: true)
 
 # 追加のユーザーをまとめて生成する
 32.times do |n|
@@ -44,9 +42,7 @@ User.create!(name:  name,
             email: email,
             birthday: birthday,
             password:              password,
-            password_confirmation: password,
-            activated: true,
-            activated_at: Time.zone.now)
+            password_confirmation: password)
 end
 
 users = User.order(:created_at).take(6)

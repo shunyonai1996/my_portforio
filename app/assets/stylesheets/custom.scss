@@ -11,18 +11,27 @@ $custom-width: 650px;
 
 img {
   border-radius: 50px;
-  max-width: 100px;
+  max-width: 95px;
   min-width: 20%;
 }
 
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar, .navbar-nav {
+  justify-content: end;
+  li {
+    text-align: right;
+  }
+}
 
 /* header, footer */
 
-header {
-  margin-bottom: 20px;
-  padding: 20px;
-  text-align: center;
-}
 
 /* mixins, variables, etc. */
 
@@ -55,7 +64,7 @@ $gray-medium-light: #eaeaea;
   justify-content: center;
 }
 
-.profile-img-area {
+.img-area {
   display: flex;
   align-items: center;
   margin-right: 5%;
@@ -101,14 +110,6 @@ $gray-medium-light: #eaeaea;
   }
 }
 
-.checkbox {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
 
 // new post form
 .field {
@@ -117,7 +118,8 @@ $gray-medium-light: #eaeaea;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  background-color: burlywood;
+  border-radius: 10px;
+  background-color: darksalmon;
     .field-item {
       margin-top: 8px;
       margin-bottom: 8px;
@@ -154,6 +156,18 @@ $gray-medium-light: #eaeaea;
       border-color: black;
       border-width: 1px;
     }
+    .check-box-area {
+      display: flex;
+      input {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 5px;
+      }
+      p {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
     textarea {
       padding: 6px;
       min-width: 280px;
@@ -165,6 +179,10 @@ $gray-medium-light: #eaeaea;
     label {
       min-width: 84px;
     }
+}
+
+input[type="checkbox"] {
+  min-width: 15px;
 }
 
 .content-width {
@@ -192,6 +210,20 @@ $gray-medium-light: #eaeaea;
   }
 }
 
+
+
+/* user index */
+.user-index {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.user-index-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 
 /* post index forms */

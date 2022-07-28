@@ -1,14 +1,10 @@
 <section class="profile-container">
   <div class="profile-area">
-    <div class="profile-img-area">
+    <div class="img-area">
       <% if @user.avatar? %>
-        <div class="profile-img-area">
-          <%= image_tag @user.avatar.url %>
-        </div>
+        <%= image_tag @user.avatar.url %>
       <% else %>
-        <div>
-          <%= image_tag ("default.jpg") %>
-        </div>
+        <%= image_tag ("default.jpg") %>
       <% end %>
     </div>
     
@@ -34,9 +30,11 @@
       
       <p>自己紹介：<%= @user.biography %></p>
       
-    <%= render partial: 'relationships/follow_button' %>
-    
-    
+      <%= render partial: 'relationships/follow_button' %>
+
+      <% if current_user?(@user) %>
+        <%= link_to "アカウントを削除", @user, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+      <% end %>
     </div>
   </div>
 </section>
@@ -49,5 +47,3 @@
     <%= will_paginate @microposts %>
   <% end %>
 </div>
-
-<p>アカウントを削除</p>

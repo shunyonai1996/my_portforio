@@ -20,6 +20,7 @@ class MicropostsController < ApplicationController
 
   def new
     @micropost = current_user.microposts.build if logged_in?
+    gon.industries = Industry.all.to_json only: %i[id name]
   end
 
   def show
@@ -38,11 +39,11 @@ class MicropostsController < ApplicationController
 
   def search
     if params[:id].present?
+      gon.industries = Industry.all.to_json only: %i[id name]
       @occupation = Occupation.find(params[:id])
       @microposts = Micropost.where("occupation_id LIKE ?", "%#{params[:id]}%").paginate(page: params[:page])
-      gon.industries = Industry.all.to_json only: %i[id name]
     else
-      flash[:danger] = "職種を選択してください"
+      flash[:danger] = "業界と職種を選択してください"
       redirect_to request.referrer || root_path
     end
   end

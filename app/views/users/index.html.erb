@@ -1,14 +1,30 @@
 <h1>ユーザー一覧</h1>
 
-<ul>
+<ul class="user-index-container">
   <% @users.each do |user| %>
-  <li>
-    <%= link_to user.name, user %>
-      <% if current_user.admin? && !current_user?(user) %>
-        | <%= link_to "delete", user, method: :delete,
-                                data: { confirm: "本当に削除しますか？"} %>
-      <% end %>
-    </li>
+  <a href="/users/<%= user.id %>">
+    <li class="user-index">
+        <div class="img-area">
+          <% if user.avatar? %>
+            <%= image_tag user.avatar.url %>
+          <% else %>
+            <%= image_tag ("default.jpg") %>
+          <% end %>
+        </div>
+        <div class="user-index-item">
+          <p>
+            <%= user.name %>
+            <span>
+            <% if current_user.admin? && !current_user?(user) %>
+                | <%= link_to "delete", user, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+            <% end %>
+            </span>
+          </p>
+          <p><%= user.biography %></p>
+        </div>
+      </li>
+    </a>
+    <hr>
   <% end %>
 </ul>
 

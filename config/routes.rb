@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root    'microposts#index'
   
-  post '/users/guest_sign_in', to: 'users#guest_sign_in'
   
   get     '/',            to: 'microposts#index'
   get     'policy',       to: 'home#policy'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   get     'likes/destroy'
   post    '/login',       to: 'sessions#create'
   post    'set_occupations', to: 'occupations#set_occupations'
+  post    '/users/guest_sign_in', to: 'users#guest_sign_in'
   delete  '/logout',      to: 'sessions#destroy'
   
 
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     get 'bookmarklist' => 'bookmarks#bookmarklist', as: 'bookmarklist'
   end
  
-  resources :account_activations, only: [:edit]
   resources :microposts, only: %i[index new create destroy search show] do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

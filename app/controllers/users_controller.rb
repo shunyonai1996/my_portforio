@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,   only: :destroy
+  before_action :logged_in_user,   only: [:index, :edit, :update, :destroy]
+  # before_action :admin_user,   only: :destroy
   
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
     @microposts = @user.microposts.paginate(page: params[:page])
     @job_discription = JobDiscription.find(params[:id])
     @bookmarks = Bookmark.where(user_id: current_user.id)
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "メールアドレスに送信されたリンクからアカウントを有効化してください"
+      log_in @user
+      flash[:success] = "新規登録が完了しました！"
       redirect_to root_url
     else
       render 'new'
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "削除が完了しました"
-    redirect_to users_url
+    redirect_to root_path
   end
 
   def guest_sign_in

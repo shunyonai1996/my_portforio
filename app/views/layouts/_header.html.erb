@@ -1,23 +1,28 @@
-<header class="p-3 mb-2 bg-info text-white">
+<header>
 
-  <h1>Clear Job</h1>
-  <h2>職選びのミスマッチを防ぐ</h2>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="nav">
-      <li class="nav-item"><%= link_to "トップページ", root_path, data: {"turbolinks" => false} %></li>
+  <a class="navbar-brand" href="/">だいjobそ？</a>
+  <nav class="navbar navbar-light fixed-top">
+    <!-- ハンバーガーメニュー -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <% if logged_in? %>
-        <li class="nav-item"><%= link_to "ユーザー一覧", users_path, data: {"turbolinks" => false} %></li>
-        <li class="nav-item"><%= link_to "投稿する", new_micropost_path, data: {"turbolinks" => false} %></li>
-        <li class="nav-item"><%= link_to "プロフィール", current_user, data: {"turbolinks" => false} %></li>
-        <li class="nav-item"><%= link_to "プロフィールを編集", edit_user_path(current_user), data: {"turbolinks" => false} %></li>
-        <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete %></li>
-      <% else %>
-        <li class="nav-item"><%= link_to "ログイン", login_path %></li>
-        <li class="nav-item"><%= link_to "新規登録", signup_path %></li>
-        <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :user %></li>
-      <% end %>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if logged_in? %>
+          <li class="nav-item active"><%= link_to "ホーム", root_path, data: {"turbolinks" => false} %></li>
+          <li class="nav-item"><%= link_to "ユーザー一覧", users_path, data: {"turbolinks" => false} %></li>
+          <li class="nav-item"><%= link_to "投稿する", new_micropost_path, data: {"turbolinks" => false} %></li>
+          <li class="nav-item"><%= link_to "プロフィール", current_user, data: {"turbolinks" => false} %></li>
+          <li class="nav-item"><%= link_to "プロフィールを編集", edit_user_path(current_user), data: {"turbolinks" => false} %></li>
+          <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ログイン", login_path %></li>
+          <li class="nav-item"><%= link_to "新規登録", signup_path %></li>
+          <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :user %></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 
 </header>

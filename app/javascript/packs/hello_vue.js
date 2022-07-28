@@ -29,8 +29,6 @@ new Vue({
         .then((response) => {
           this.occupations = response.data
         })
-        console.log(industry)
-        console.log(occupation)
     }
   }
 });
