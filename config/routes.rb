@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get     'terms',        to: 'home#terms'
   get     'signup',       to: 'users#new'
   get     '/login',       to: 'sessions#new'
-  get     'likes/create'
+  get     'likes/crate'
   get     'likes/destroy'
   post    '/login',       to: 'sessions#create'
   post    'set_occupations', to: 'occupations#set_occupations'
