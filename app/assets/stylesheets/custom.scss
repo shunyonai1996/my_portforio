@@ -11,6 +11,11 @@ $custom-width: 650px;
   border-radius: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: rgb(247, 246, 242);
 }
 
 h1, h2, h3, p, a, label, input, select {
@@ -57,7 +62,6 @@ header,footer {
   .navbar-toggler {
     background-color: rgb(200, 198, 198);
   }
-
   #navbarNavDropdown {
     text-align: center;
   }
