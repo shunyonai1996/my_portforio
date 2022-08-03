@@ -1,12 +1,25 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans+JP&display=swap');
 
 // カスケード変数
 $custom-width: 650px;
 
 //全般
 .container {
-  background-color: floralwhite;
+  background-color: rgb(75, 101, 135);
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+h1, h2, h3, p, a, label, input, select {
+  font-family: 'M PLUS 1p', sans-serif;
+}
+
+h2, h3 {
+  text-align: center;
+  color: rgb(247, 246, 242);
 }
 
 img {
@@ -20,11 +33,35 @@ li {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: rgb(240, 229, 207);
+}
+
+a:hover {
+  background-color: rgb(240, 229, 207);
+  opacity: 0.4;
 }
 
 /* header, footer */
+header,footer {
+  background-color: rgb(240, 229, 207);
+  h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  a {
+    color: rgb(75, 101, 135);
+  }
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }  
+  .navbar-toggler {
+    background-color: rgb(200, 198, 198);
+  }
 
+  #navbarNavDropdown {
+    text-align: center;
+  }
+}
 
 /* mixins, variables, etc. */
 
@@ -74,7 +111,7 @@ $gray-medium-light: #eaeaea;
   margin-left: auto;
   padding: 20px 0px;
   text-align: center;
-  background-color: darksalmon;
+  background-color: rgb(200, 198, 198);
   border-radius: 20px;
   select {
     display: block;
@@ -84,8 +121,8 @@ $gray-medium-light: #eaeaea;
     width: 270px;
     height: 50px;
     border-radius: 20px;
-    background-color: floralwhite;
-    border: floralwhite;
+    background-color: rgb(247, 246, 242);
+    border: rgb(247, 246, 242);
   }
   input {
     display: block;
@@ -112,7 +149,7 @@ $gray-medium-light: #eaeaea;
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
-  background-color: darksalmon;
+  background-color: rgb(200, 198, 198);
     .field-item {
       margin-top: 8px;
       margin-bottom: 8px;
@@ -229,7 +266,7 @@ input[type="checkbox"] {
 .posts-box {
   padding: 20px;
   margin: 10px;
-  background-color: lightblue;
+  background-color: rgb(228, 216, 220);
   border-radius: 20px;
 }
 
@@ -244,7 +281,7 @@ input[type="checkbox"] {
 .discription-area {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: darksalmon;
+  background-color: rgb(255, 227, 227);
   border-radius: 20px;
   p {
     margin: 5px 0px;

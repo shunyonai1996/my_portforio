@@ -1,7 +1,8 @@
-<h1>ユーザー一覧</h1>
+<h2>ユーザー一覧</h2>
 
 <ul class="user-index-container">
   <% @users.each do |user| %>
+  <hr>
   <a href="/users/<%= user.id %>">
     <li class="user-index">
         <div class="img-area">
@@ -24,7 +25,6 @@
         </div>
       </li>
     </a>
-    <hr>
   <% end %>
 </ul>
 

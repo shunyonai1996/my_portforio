@@ -3,7 +3,7 @@
   <% @comments.each do |c| %>
     <div>
       <a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-      <%= c.comment %>
+      <p><%= c.comment %></p>
       <% if current_user.id == c.user.id %>
         <%= link_to "削除", micropost_comment_path(@micropost, c), method: :delete %>
       <% end %>

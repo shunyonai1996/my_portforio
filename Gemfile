@@ -18,7 +18,6 @@ gem 'sqlite3', '~> 1.4'
 
 gem 'mysql2'
 gem 'net-smtp'
-# ついでに以下の2つも追加しておく方が良さそう
 gem 'net-imap'
 gem 'net-pop'
 # Use Puma as the app server
