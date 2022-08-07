@@ -8,32 +8,35 @@
       <% end %>
     </div>
     
-    <div>
-      <div class="basic-info">
+    <div class="basic-info">
 
-        <p class="basic-info-item"><%= @user.name %></p>
-        <!-- 生年月日から年齢を逆算 -->
-        <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
-        <% if current_user?(@user) %>
-          <%= link_to "プロフィールを編集", edit_user_path(current_user) %>
-        <% end %>
+      <p class="basic-info-item"><%= @user.name %></p>
+      <!-- 生年月日から年齢を逆算 -->
+      <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
+      <% if current_user?(@user) %>
+        <%= link_to "マイページを編集", edit_user_path(current_user), class: "basic-info-item" %>
+      <% end %>
 
-      </div>
 
       <p class="basic-info-item">投稿数 (<%= @user.microposts.count %>)</p>
 
       <%= render partial: 'relationships/follows_count' %>
       
-      <div>
-        <%= link_to "ブックマーク一覧", user_bookmarklist_path(current_user) %>
-      </div>
+      <% if current_user?(@user) %>
+        <%= link_to "ブックマーク一覧", user_bookmarklist_path(current_user), class: "basic-info-item" %>
+      <% end %>
       
-      <p>自己紹介：<%= @user.biography %></p>
+      <div class="basic-info-item">
+        <p>自己紹介:</p>
+        <p>
+          <%= @user.biography %>
+        </p>
+      </div>
       
       <%= render partial: 'relationships/follow_button' %>
 
       <% if current_user?(@user) %>
-        <%= link_to "アカウントを削除", @user, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+        <%= link_to "アカウントを削除", @user, method: :delete, data: { confirm: "本当に削除しますか？"}, class: "basic-info-item" %>
       <% end %>
     </div>
   </div>

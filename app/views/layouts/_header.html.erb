@@ -1,32 +1,103 @@
-<header>
-
-  <nav class="navbar navbar-expand-md fixed-top">
-      <h1><a class="navbar-brand" href="/">だいjobそ？</a></h1>
-    <!-- ハンバーガーメニュー -->
-    <div class="hamburger-button">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<header row>
+  <!-- ハンバーガーメニュー -->
+  <div id="hamburger-app">
+      <h1><a href="/">だいjobそ？</a></h1>
+      <button type="button" class="menu-btn js-btn" v-on:click="open=!open" >
+        <span class="btn-line"></span>
       </button>
-    </div>
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <% if logged_in? %>
-        <ul class="navbar-nav">
-          <li class="nav-item active"><%= link_to "ホーム", root_path, data: {"turbolinks" => false}, class: "nav-link" %> <span class="sr-only">(current)</span></li>
-          <li class="nav-item"><%= link_to "ユーザー一覧", users_path, data: {"turbolinks" => false}, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "投稿する", new_micropost_path, data: {"turbolinks" => false}, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "プロフィール", current_user, data: {"turbolinks" => false}, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "プロフィールを編集", edit_user_path(current_user), data: {"turbolinks" => false}, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %></li>
-        </ul>
+      <div class="menu" v-bind:class="{'is-active' : open }">
+        <% if logged_in? %>
+            <div class="menu__item">
+              <%= link_to root_path, data: {"turbolinks" => false} do %>
+                <div>
+                  <span class="material-icons md-36">home</span>
+                </div>
+                <div class="mask mask01">
+                  <p>ホーム</p>
+                </div>
+              <% end %>
+            </div>
+
+
+          <div class="menu__item">
+            <%= link_to users_path, data: {"turbolinks" => false} do %>
+              <div>
+                <span class="material-icons md-36">groups</span>
+              </div> 
+              <div class="mask mask01">
+                <p>ユーザー</p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="menu__item">
+            <%= link_to new_micropost_path, data: {"turbolinks" => false} do %>
+              <div>
+                <span class="material-icons md-36">create</span>
+              </div>
+              <div class="mask mask01">
+                <p>投稿</p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="menu__item">
+            <%= link_to current_user, data: {"turbolinks" => false} do %>
+              <div>
+                <span class="material-icons md-36">person</span>
+              </div>
+              <div class="mask mask01">
+                <p>マイページ</p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="menu__item">
+            <%= link_to logout_path, method: :delete do %>
+              <div>
+                <span class="material-icons md-36">logout</span>
+              </div>
+              <div class="mask mask01">
+                <p>ログアウト</p>
+              </div>
+            <% end %>
+          </div>
         <% else %>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規登録", signup_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :user, class: "nav-link" %></li>
-        </ul>
-      <% end %>
-    </div>
-  </nav>
 
+          <div class="menu__item">
+            <%= link_to login_path do %>
+              <div>
+                <span class="material-icons md-36">login</span>
+              </div>
+              <div class="mask mask01">
+                <p>ログイン</p>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="menu__item">
+            <%= link_to signup_path do %>
+              <div>
+                <span class="material-icons md-36">person_add</span>
+              </div>
+              <div class="mask mask01">
+                <p>新規登録</p>
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="menu__item">
+            <%= link_to users_guest_sign_in_path, method: :user do %>
+            <div>
+              <span class="material-icons md-36">hail</span>
+            </div>
+            <div class="mask mask01">
+              <p>ゲストログイン</p>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 </header>

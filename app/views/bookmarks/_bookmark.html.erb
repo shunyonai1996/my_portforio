@@ -1,7 +1,7 @@
-<div>
+<div class="basic-info">
   <% if @micropost.bookmarked_by?(current_user) %>
-    <p><%= link_to "ブックマークを解除", micropost_bookmark_path(@micropost), method: :delete %></p>
+    <p class="basic-info-item"><%= link_to "ブックマークを解除", micropost_bookmark_path(@micropost), method: :delete %><span class="material-icons md-18">remove_done</span></p>
   <% else %>
-    <p><%= link_to "ブックマークする", micropost_bookmarks_path(@micropost), method: :create %></p>
+    <p class="basic-info-item"><%= link_to "ブックマークする", micropost_bookmarks_path(@micropost), method: :create %><span class="material-icons md-18">done</span></p>
   <% end %>
 </div>

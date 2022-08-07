@@ -1,13 +1,13 @@
-<h1>新規登録</h1>
+<h2>新規登録</h2>
 
-<div>
+<div class="sign-up">
   <%= form_with(model: @user, local:true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <%= f.label :name, "名前" %>
     <%= f.text_field :name %>
 
-    <%= f.label :email, "メール" %>
+    <%= f.label :email, "メールアドレス" %>
     <%= f.text_field :email %>
 
     <%= f.label :birthday, "生年月日（西暦）" %>
@@ -19,8 +19,8 @@
     <%= f.label :password_confirmation, "パスワード確認用" %>
     <%= f.password_field :password_confirmation %>
 
-    <%= f.submit "登録" %>
+    <%= f.submit "登録", class: "btn btn-primary" %>
   <% end %>
 </div>
 
-<p>登録済みの場合 <% link_to "ログインはこちら", login_path %> </p>
+<p>登録済みの場合 <%= link_to "ログインはこちら", login_path %> </p>

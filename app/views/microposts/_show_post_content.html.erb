@@ -1,22 +1,33 @@
 <div class="posts-index-item col-12">
   <div class="posts-box">
 
-    <div>
-      <p><a href="/users/<%= @micropost.user.id %>"><%= @micropost.user.name %></a>さんの投稿</p>
+    <div class="basic-info">
+      <div class="basic-info-item">
+        <% unless current_user?(@micropost.user) %>
+          <p><a href="/users/<%= @micropost.user.id %>"><%= @micropost.user.name %></a>さんの投稿<span class="material-icons md-18">account_circle</span></p>
+        <% else %>
+          <p>自分の投稿</p>
+        <% end %>
+      </div>
+
+      <div class="basic-info-item">
+        <p>職種<span class="material-icons md-18">work_outline</span><span> | </span><%= @micropost.occupation.name %></p>
+      </div>
+
+      <div class="basic-info-item">
+        <p>職業<span class="material-icons md-18">engineering</span><span> | </span><%= @micropost.job %></p>
+      </div>
+
+      <div class="basic-info-item">
+        <p>時期<span class="material-icons md-18">running_with_errors</span><span> | </span><%= @micropost.busyness %></p>
+      </div>
+
+      <div class="basic-info-item schedule">
+        <p>スケジュールと職務内容<span class="material-icons md-18">date_range</span></p>
+      </div>
     </div>
 
-    <div class="basic-info ">
-      <p class="basic-info-item">職種：<%= @micropost.occupation.name %></p>
-      <p class="basic-info-item">職業：<%= @micropost.job %></p>
-      <p class="basic-info-item">時期：<%= @micropost.busyness %></p>
-    </div>
-
     <div>
-      <p>投稿日：<%= @micropost.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p>
-    </div>
-
-    <div>
-      <p>スケジュールと職務内容</p>
       <% @micropost.job_discriptions.each do | discription | %>
         <div class="discription-area col-12">
           <p><%= discription.time.strftime( "%H時%M分" ) %></p>
@@ -25,12 +36,17 @@
       <% end %>
     </div>
 
-    <div>
-      <p>補足情報：<%= @micropost.complement %></p>
+    <div class="basic-info">
+      <p class="basic-info-item">補足情報<span class="material-icons md-18">mode_edit</span></p>
+      <% if @micropost.complement.present? %>
+        <p><%= @micropost.complement %></p>
+      <% else %>
+        <p>なし</p>
+      <% end %>
     </div>
 
     <div class="reaction-area">
-      <div id="likes_buttons_<%= @micropost.id %>">
+      <div id="likes_buttons_<%= @micropost.id %>" class="like-button">
         <p><%= render partial: 'likes/like', locals: { micropost: @micropost, likes: @likes} %></p>
       </div>
       <%= render partial: 'bookmarks/bookmark' %>

@@ -1,27 +1,43 @@
 <% @microposts.each do |post| %>
-  <div class="posts-index-item col-12">
-    <div class="posts-box">
+  <div class="posts-index-item row">
+    <div class="posts-box col-12">
 
-      <div>
+      <div class="basic-info">
         <% if logged_in? %>
-          <a href="/users/<%= post.user.id %>"><%= post.user.name %></a>
+          <div class="basic-info-item">
+            <% unless current_user?(post.user) %>
+              <p><a href="/users/<%= post.user.id %>"><%= post.user.name %></a>さんの投稿<span class="material-icons md-18">account_circle</span></p>
+            <% else %>
+              <p>自分の投稿</p>
+            <% end %>
+          </div>
+
+          <div class="basic-info-item">
+            <p><%= post.created_at.strftime("%Y年%-m月%-d日%H時%M分") %></p>
+          </div>
         <% else %>
           <%= post.user.name %>
         <% end %>
-      </div>
   
-      <div class="basic-info">
-        <p class="basic-info-item">職種：<%= post.occupation.name %></p>
-        <p class="basic-info-item">職業：<%= post.job %></p>
-        <p class="basic-info-item">時期：<%= post.busyness %></p>
+        <div class="basic-info-item">
+          <p>職種<span class="material-icons md-18">work_outline</span><span> | </span><%= post.occupation.name %></p>
+        </div>
+
+        <div class="basic-info-item">
+          <p>職業<span class="material-icons md-18">engineering</span><span> | </span><%= post.job %></p>
+        </div>
+
+        <div class="basic-info-item">
+          <p>時期<span class="material-icons md-18">date_range</span><span> | </span><%= post.busyness %></p>
+        </div>
+        
+        <div class="basic-info-item schedule">
+          <p>スケジュールと職務内容<span class="material-icons md-18">note_alt</span></p>
+        </div>
       </div>
   
       <div>
-        <p>投稿日：<%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p>
-      </div>
-  
-      <div>
-        <p>スケジュールと職務内容</p>
+        
         <% post.job_discriptions.each do |discription| %>
           <div class="discription-area col-12">
             <p><%= discription.time.strftime( "%H時%M分" ) %></p>
@@ -30,18 +46,23 @@
         <% end %>
       </div>
 
-      <div class="complement">
-        <p>補足情報：<%= post.complement %></p>
+      <div class="basic-info">
+        <p class="basic-info-item">補足情報<span class="material-icons md-18">error_outline</span></p>
+        <% if post.complement.present? %>
+          <p><%= post.complement %></p>
+        <% else %>
+          <p>なし</p>
+        <% end %>
       </div>
       
       <div class="reaction-area">
-        <div id="likes_buttons_<%= post.id %>">
+        <div id="likes_buttons_<%= post.id %>" class="like-button">
           <p><%= render partial: 'likes/like', locals: { micropost: post, likes: @likes} %></p>
         </div>
 
         <div>
           <% if logged_in? %>
-            <a href="/microposts/<%= post.id %>"><%= '詳細ページへ' %></a>
+            <a href="/microposts/<%= post.id %>"><%= '詳細ページへ' %><span class="material-icons md-18">exit_to_app</span></a>
           <% else %>
             <%= '※ログインか新規登録で詳細ページへ' %>
           <% end %>

@@ -1,27 +1,17 @@
-<h2 style="text-align: center;">職業を検索</h2>
-
-<!-- 元々の実装箇所 -->
-<!-- <%= form_with url: search_microposts_path, method: :get, local: true do |f| %>
-<div class="search-form">
-  <%= f.collection_select :id, Industry.all, :id, :name, prompt: "業界を選択" %>
-  <%= f.collection_select :id, Occupation.all, :id, :name, prompt: "職種を選択" %>
-  <%= f.submit "検索" %>
+<h2>職業を検索<span class="material-icons md-36">content_paste_search</span></h2>
+<div class="row">
+  <%= form_with url: search_microposts_path, method: :get, id: 'example_form', class: 'col-12',  local: true do |f| %>
+    <div class="search-form col-7">
+      <%= f.select :id, nil, {prompt: "①業界を選択"}, {'v-model': 'selectedIndust', '@change': 'getOccupations(selectedIndust)'} do %>
+        <option v-for="industry in industries" :key="industry.name" :value="industry.id">
+          {{industry.name}}
+        </option>
+      <% end %>
+      <%= f.select :id, nil, {prompt: "②職業を選択"} do %>
+        <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">{{occupation.name}}</option>
+      <% end %>
+  <%= f.submit '③検索' %>
+    </div>
+  <% end %>
 </div>
-<% end %> -->
-<!-- ここまで -->
 
-<%= form_with url: search_microposts_path, method: :get, id: 'example_form', local: true do |f| %>
-  <div class="search-form">
-    <%= f.select :id, nil, {prompt: "①業界を選択"}, {'v-model': 'selectedIndust', '@change': 'getOccupations(selectedIndust)'} do %>
-      <option v-for="industry in industries" :key="industry.name" :value="industry.id">
-        {{industry.name}}
-      </option>
-    <% end %>
-    <%= f.select :id, nil, {prompt: "②職業を選択"} do %>
-      <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">{{occupation.name}}</option>
-    <% end %>
-    <%= f.submit '③検索' %>
-  </div>
-<% end %>
-
-<%= javascript_pack_tag 'hello_vue' %>

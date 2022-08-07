@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   root    'microposts#index'
-  
-  
   get     '/',            to: 'microposts#index'
   get     'policy',       to: 'home#policy'
   get     'terms',        to: 'home#terms'
@@ -13,7 +11,6 @@ Rails.application.routes.draw do
   post    'set_occupations', to: 'occupations#set_occupations'
   post    '/users/guest_sign_in', to: 'users#guest_sign_in'
   delete  '/logout',      to: 'sessions#destroy'
-  
 
   resources :users do
     resources :relationships, only: [:create, :destroy]

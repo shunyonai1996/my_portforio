@@ -1,15 +1,28 @@
 <section>
-  <% if current_user?(@user) %>
-    <% if @bookmarks.present? %>
-      <p>ブックマークした投稿</p>
+  <% if current_user?(@user) && @bookmarks.present? %>
+    <h3>ブックマークした投稿</h3>
+    <div class="bookmark-container">
       <% @bookmarks.each do |bookmark| %>
         <%= link_to micropost_path(bookmark.micropost) do %>
-          <p><%= bookmark.micropost.user.name %></p>
-          <p><%= bookmark.micropost.industry.name %></p>
+          <div class="bookmark-item">
+            <div class="bookmark-detail">
+              <% if bookmark.micropost.user.avatar? %>
+                <%= image_tag bookmark.micropost.user.avatar.url %>
+              <% else %>
+                <%= image_tag ("default.jpg") %>
+              <% end %>
+            </div>
+
+            <div class="bookmark-detail">
+              <p class="bookmark-detail-item">投稿者 | <%= bookmark.micropost.user.name %></p>
+              <p class="bookmark-detail-item"><%= bookmark.micropost.created_at.strftime("%Y年%-m月%-d日") %>の投稿</p>
+              <p class="bookmark-detail-item"><%= bookmark.micropost.occupation.name %></p>
+            </div>
+          </div>
         <% end %>
       <% end %>
-    <% else %>
+    </div>
+  <% else %>
       <p>ブックマークした投稿はありません</p>
-    <% end %>
   <% end %>
 </section>
