@@ -14,6 +14,13 @@ axios.defaults.headers.common = {
 };
 
 new Vue({
+  el: '#hamburger-app',
+  data: {
+    open: false
+  }
+})
+
+new Vue({
   el: '#example_form',
   data: {
     selectedIndust: '',
@@ -33,12 +40,7 @@ new Vue({
   }
 });
 
-new Vue({
-  el: '#hamburger-app',
-  data: {
-    open: false
-  }
-})
+
 
 
 

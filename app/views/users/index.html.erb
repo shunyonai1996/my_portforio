@@ -1,34 +1,36 @@
+<% provide(:title, "ユーザー一覧") %>
 <h2>ユーザー一覧<span class="material-icons md-36">groups</span></h2>
 
 <ul class="user-index-container">
   <% @users.each do |user| %>
-  <hr>
-  <a href="/users/<%= user.id %>">
-    <li class="user-index">
-        <div class="img-area">
-          <% if user.avatar? %>
-            <%= image_tag user.avatar.url %>
-          <% else %>
-            <%= image_tag ("default.jpg") %>
-          <% end %>
+    <hr>
+    <a href="/users/<%= user.id %>">
+      <div class="user-index row">
+        <div class="img-area col-xs-4">
+          <div>
+            <% if user.avatar? %>
+              <%= image_tag user.avatar.url %>
+            <% else %>
+              <%= image_tag ("default.jpg") %>
+            <% end %>
+          </div>
         </div>
 
-        <ul class="user-index-item">
+        <ul class="user-index-item col-xs-7">
           <li>
-            <%= user.name %>
-            <span>
-            <% if current_user.admin? && !current_user?(user) %>
-                | <%= link_to "delete", user, method: :delete, data: { confirm: "本当に削除しますか？"} %>
-            <% end %>
-            </span>
+            <p><%= user.name %></p>
           </li>
-
           <li><%= (Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</li>
 
           <li>投稿数（<%= user.microposts.count %>）</li>
         </ul>
-      </li>
+      </div>
     </a>
+    <% if current_user.admin? && !current_user?(user) %>
+      <div>
+        <p><%= link_to "削除（管理者権限）", user, method: :delete, data: { confirm: "本当に削除しますか？"} %></p>
+      </div>
+    <% end %>
   <% end %>
 </ul>
 

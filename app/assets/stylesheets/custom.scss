@@ -42,21 +42,26 @@ li {
 
 p {
   margin: 0;
+  word-wrap: break-word;
 }
 
 a {
   text-decoration: none;
 }
 
+hr {
+  border-color: rgb(200, 198, 198);
+}
+
 a:hover {
-    background-color: #b1eeff;
+    background-color: rgb(200, 198, 198);
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all  0.3s ease;
     opacity: 0.8;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 // Material Icon用
@@ -119,10 +124,18 @@ $gray-medium-light: #eaeaea;
   justify-content: center;
 }
 
+
+
 .img-area {
   display: flex;
   align-items: center;
-  margin-right: 5%;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  .img-item {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .profile-post-area {
@@ -175,7 +188,9 @@ $gray-medium-light: #eaeaea;
   margin-right: auto;
   border-radius: 10px;
   background-color: rgb(75, 101, 135);
-    .field-item {
+    .field-item, .nested-fields-block {
+      display: flex;
+      flex-direction: column;
       margin-top: 8px;
       margin-bottom: 8px;
       margin-left: auto;
@@ -211,28 +226,25 @@ $gray-medium-light: #eaeaea;
       max-width: 350px;
       height: 40px;
       border-radius: 10px;
-      border-color: black;
       border-width: 1px;
     }
     .check-box-area {
       display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
       input {
+        width: 10px;
         margin-top: auto;
         margin-bottom: auto;
         margin-right: 5px;
-      }
-      p {
-        margin-top: auto;
-        margin-bottom: auto;
       }
     }
     textarea {
       padding: 6px;
       min-width: 280px;
       height: 100px;
-      border-radius: 10px;
-      border-color: black;
-      border-width: 1px;
     }
     label {
       min-width: 84px;
@@ -261,10 +273,18 @@ input[type="checkbox"] {
   }
   textarea {
     width: 250px;
+    background-color: rgb(247, 246, 242);
+  }
+  textarea::placeholder {
+    color: rgb(75, 101, 135);
   }
   input {
+    color: rgb(75, 101, 135);
     width: 200px;
     height: 30px;
+    background-color: rgb(247, 246, 242);
+    border-color: rgb(75, 101, 135);
+    border-width: 1px;
   }
 }
 
@@ -281,7 +301,7 @@ input[type="checkbox"] {
 .user-index {
   background-color: rgb(75, 101, 135);
   display: flex;
-  justify-content: start;
+  justify-content: center;
   max-width: 450px;
   margin-left: auto;
   margin-right: auto;
@@ -295,6 +315,9 @@ input[type="checkbox"] {
   flex-direction: column;
   justify-content: center;
   color: rgb(247, 246, 242);
+  a {
+    color: rgb(247, 246, 242);
+  }
 }
 
 
@@ -308,7 +331,7 @@ input[type="checkbox"] {
 
 .posts-box {
   margin-top: 10px;
-  padding: 20px;
+  padding: 4%;
   background-color: rgb(75, 101, 135);
   border-radius: 20px;
   a {
@@ -320,10 +343,10 @@ input[type="checkbox"] {
 .basic-info {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
+  margin: 10px;
   .schedule {
-      margin-top: 10px;
-      text-align: center;
+    margin-top: 10px;
+    text-align: center;
   }
   .basic-info-item {
     letter-spacing: 3px;
@@ -331,8 +354,7 @@ input[type="checkbox"] {
     margin-top: 5px;
     margin-bottom: 0px;
     p {
-      display: inline-block;
-      margin-bottom: 0px;
+      word-wrap: break-word;
     }
   }
 }
@@ -406,7 +428,6 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 0;
     margin: 0;
     color: rgb(247, 246, 242);
@@ -417,34 +438,22 @@ input[type="checkbox"] {
 }
 
 // bookmark list
-.bookmark-container {
-  max-width: $custom-width;
-  margin: 10px auto 0px auto;
-  padding: 15px;
-  background-color: rgb(75, 101, 135);
-  border-radius: 20px;
-  color: rgb(247, 246, 242);
-  a {
-    color: rgb(75, 101, 135);
-  }
-
   .bookmark-item {
     display: flex;
     justify-content: space-around;
     padding: 10px;
     margin-bottom: 10px;
-    background-color:  rgb(247, 246, 242);
-    color: #333;
+    background-color:  rgb(75, 101, 135);
+    color: rgb(247, 246, 242);
     border-radius: 20px;
+    .bookmark-detail {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
   }
-
-  .bookmark-detail {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-}
-
+    
+    
 /*----------------------------
 * メディアクエリ（ハンバーガーメニュー）
 *----------------------------*/

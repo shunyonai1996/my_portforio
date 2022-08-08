@@ -1,4 +1,4 @@
-<h3>コメント<span class="material-icons md-36">textsms</span></h3>
+<h3 style="text-align: left;">コメント<span class="material-icons md-36">textsms</span></h3>
 <% if @micropost.comments.any? %>
   <% @comments.each do |c| %>
     <div>
@@ -10,13 +10,11 @@
       <hr>
     </div>
   <% end %>
-<% else %>
-  <p>コメントがありません</p>
 <% end %>
 
 <%= form_with( model:[@micropost, @comment], method: :post, class:"comment-form") do |f| %>
   <div>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, placeholder: "コメントを入力" %>
   </div>
   <%= f.hidden_field :micropost_id, value: @micropost.id %>
   <%= f.hidden_field :user_id, value: @comment.user_id %>

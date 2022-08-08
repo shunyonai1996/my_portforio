@@ -1,3 +1,4 @@
+<% provide(:title, "マイページを編集") %>
 <div class="row">
   <div class="col-xs-12">
     <h3>マイページを編集<span class="material-icons md-36">settings</span></h3>
@@ -15,7 +16,7 @@
           <%= f.file_field :avatar %>
         </div>
 
-        <div class="field-item check-box-area">
+        <div class="check-box-area">
           <%= f.check_box :remove_avatar %>
           <p>現在設定している画像をリセットする</p>
         </div>

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :logged_in_user,   only: [:index, :edit, :update, :destroy]
-  # before_action :admin_user,   only: :destroy
+  before_action :admin_user,   only: :destroy
+  before_action :guest_user,   only: :index
   
   def index
     @users = User.paginate(page: params[:page])
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-    @job_discription = JobDiscription.find(params[:id])
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
   
@@ -58,7 +58,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :birthday, :biography, :avatar, :remove_avatar,  :password_confirmation)
@@ -73,5 +72,13 @@ class UsersController < ApplicationController
   #管理者かどうか確認
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  #ログイン済みユーザーかどうか確認
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
   end
 end

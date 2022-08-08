@@ -24,7 +24,6 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
 
-
   #現在ログイン中のユーザーを返す
   def current_user
     if (user_id = session[:user_id])
@@ -38,6 +37,14 @@ module SessionsHelper
     end
   end
 
+  def guest_user
+    user_email = User.find_by(email: "guest@example.com")
+    @guest_user = user_email
+  end
+
+  def guest_user?(user)
+    user && user == guest_user
+  end
   #渡されたユーザがカレントユーザーであればtrueを返す
   def current_user?(user)
     user && user == current_user

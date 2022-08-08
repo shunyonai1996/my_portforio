@@ -66,5 +66,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def guest?(user)
+    user
+  end
   
 end
