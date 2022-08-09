@@ -16,7 +16,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'cocoon'
 gem 'sqlite3', '~> 1.4'
 
-gem 'mysql2'
+gem 'mysql2', '~> 8.0.29'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
