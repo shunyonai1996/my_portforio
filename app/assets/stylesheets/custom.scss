@@ -142,9 +142,28 @@ $gray-medium-light: #eaeaea;
   padding: 0px;
 }
 
+/* login/signup form */
+.log-in, .sign-up {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 0px;
+  background-color: rgb(75, 101, 135);
+  border-radius: 10px;
+  label {
+    color: rgb(247, 246, 242);
+  }
+  p {
+    color: rgb(247, 246, 242);
+    a {
+      color: rgb(200, 198, 198);
+      border-bottom-color: rgb(200, 198, 198);
+    }
+  }
+}
+
+
 /* search form */
-.search-form {
-  max-width: $custom-width;
+#example_form {
   margin-right: auto;
   margin-left: auto;
   padding: 20px 0px;
@@ -156,8 +175,8 @@ $gray-medium-light: #eaeaea;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    max-width: 270px;
-    width: 60%;
+    max-width: 300px;
+    width: 90%;
     height: 50px;
     border-radius: 10px;
     background-color: rgb(247, 246, 242);
@@ -168,8 +187,9 @@ $gray-medium-light: #eaeaea;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    width: 80px;
+    max-width: 90px;
     height: 40px;
+    width: 60%;
     border-radius: 10px;
     border: rgb(247, 246, 242);
     background-color: rgb(247, 246, 242);

@@ -56,7 +56,11 @@
       
       <div class="reaction-area">
         <div id="likes_buttons_<%= post.id %>" class="like-button">
-          <p><%= render partial: 'likes/like', locals: { micropost: post, likes: @likes} %></p>
+          <%= render partial: 'likes/like', locals: { micropost: post, likes: @likes} %>
+        </div>
+
+        <div>
+          <a href="/microposts/<%= post.id %>"><%= "コメント" %><span class="material-icons md-18">chat</span></a>
         </div>
 
         <div>

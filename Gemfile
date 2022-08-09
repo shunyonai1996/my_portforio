@@ -30,7 +30,8 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
+# For 6.0.0 or higher
+gem 'rails-i18n', '~> 6.0.0'
 
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
