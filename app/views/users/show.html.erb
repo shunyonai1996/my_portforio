@@ -17,12 +17,12 @@
       </div>
       <!-- 生年月日から年齢を逆算 -->
       <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
-      <% if current_user?(@user) %>
+
+      <% if current_user?(@user) && !guest_user?(@user) %>
         <div class="basic-info-item">
           <%= link_to "マイページを編集", edit_user_path(current_user), class: "basic-info-item" %>
         </div>
       <% end %>
-
 
       <p class="basic-info-item">投稿数 (<%= @user.microposts.count %>)</p>
 
@@ -43,7 +43,7 @@
       
       <%= render partial: 'relationships/follow_button' %>
 
-      <% if current_user?(@user) %>
+      <% if current_user?(@user) && !guest_user?(@user) %>
         <div class="basic-info-item">
           <%= link_to "アカウントを削除", @user, method: :delete, data: { confirm: "本当に削除しますか？"}, class: "basic-info-item" %>
         </div>

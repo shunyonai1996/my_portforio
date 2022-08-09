@@ -24,16 +24,17 @@ occupations_list.each do |industry, occupation|
   industry.occupations.create(name: occupation)
 end
 
-# メインのサンプルユーザーを1人作成する
-User.create!(name:  "TestUser",
+# メインのユーザーを1人作成する
+User.create!(name:  "よなしゅん",
             email: "sample@example.com",
             birthday: "1996-10-28",
-            password:              "foobar",
-            password_confirmation: "foobar",
+            password:              "yonai471",
+            password_confirmation: "yonai471",
             admin: true)
 
+
 # 追加のユーザーをまとめて生成する
-32.times do |n|
+10.times do |n|
 name  = Faker::Name.name
 email = "sample-#{n+1}@example.com"
 birthday = "1996-10-28"
@@ -47,7 +48,7 @@ end
 
 users = User.order(:created_at).take(6)
 
-32.times do
+2.times do
   content = Faker::Lorem.sentence(word_count: 5)
   
 

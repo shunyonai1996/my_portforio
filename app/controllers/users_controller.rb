@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :logged_in_user,   only: [:index, :edit, :update, :destroy]
   before_action :admin_user,   only: :destroy
-  before_action :guest_user,   only: :index
   
   def index
     @users = User.paginate(page: params[:page])
@@ -30,6 +29,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if guest_user?(current_user)
+      flash[:danger] = "ゲストユーザーは編集できません"
+      redirect_to root_url
+    end
   end
 
   def update
@@ -42,16 +45,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "削除が完了しました"
-    redirect_to root_path
+    if guest_user?(current_user)
+      flash[:danger] = "ゲストユーザーは削除できません"
+      redirect_to root_url
+    else
+      User.find(params[:id]).destroy
+      flash[:success] = "削除が完了しました"
+      redirect_to root_path
+    end
   end
 
   def guest_sign_in
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "ゲスト"
-      user.birthday = "19961028"
+      user.name = "ゲストユーザー"
+      user.birthday = "1990-01-01"
     end
     session[:user_id] = user.id
     flash[:success] = "ゲストユーザーとしてログインしました"

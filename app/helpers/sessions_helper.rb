@@ -38,8 +38,8 @@ module SessionsHelper
   end
 
   def guest_user
-    user_email = User.find_by(email: "guest@example.com")
-    @guest_user = user_email
+    user_id = User.find_by(id: "12")
+    @guest_user = user_id
   end
 
   def guest_user?(user)
