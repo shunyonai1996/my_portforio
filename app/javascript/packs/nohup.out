@@ -1,0 +1,13 @@
+=> Booting Puma
+=> Rails 6.1.6.1 application starting in production 
+=> Run `bin/rails server --help` for more startup options
+/var/www/rails/my_portforio/app/models/user.rb:15: warning: already initialized constant User::VALID_EMAIL_REGEX
+/var/www/rails/my_portforio/app/models/user.rb:15: warning: previous definition of VALID_EMAIL_REGEX was here
+Puma starting in single mode...
+* Puma version: 5.6.4 (ruby 3.1.0-p0) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: production
+*          PID: 5694
+* Listening on unix:///var/www/rails/my_portforio/tmp/sockets/puma.sock
+Use Ctrl-C to stop

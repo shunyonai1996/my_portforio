@@ -14,12 +14,13 @@ gem 'faker', '2.20.0'
 gem 'will_paginate', '3.3.1'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'cocoon'
-gem 'sqlite3', '~> 1.4'
+#gem 'sqlite3', '~> 1.4'
 
 gem 'mysql2'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+gem 'psych', '~> 3.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
