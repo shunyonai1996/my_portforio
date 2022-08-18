@@ -45,9 +45,10 @@ p {
   word-wrap: break-word;
 }
 
-a {
-  text-decoration: none;
+select {
+  text-align: center;
 }
+
 
 hr {
   border-color: rgb(200, 198, 198);
@@ -64,7 +65,7 @@ a:hover {
     border-radius: 2px;
 }
 
-// Material Icon用
+// Material Icon
 .material-icons.md-18 { font-size: 18px; vertical-align: middle; }
 .material-icons.md-24 { font-size: 24px; vertical-align: middle; }
 .material-icons.md-36 { font-size: 36px; vertical-align: middle; }
@@ -167,7 +168,6 @@ $gray-medium-light: #eaeaea;
   margin-right: auto;
   margin-left: auto;
   padding: 20px 0px;
-  text-align: center;
   background-color: rgb(75, 101, 135);
   border-radius: 10px;
   select {
@@ -192,7 +192,6 @@ $gray-medium-light: #eaeaea;
     width: 60%;
     border-radius: 10px;
     border: rgb(247, 246, 242);
-    background-color: rgb(247, 246, 242);
   }
   option {
     text-align: center;
@@ -397,14 +396,20 @@ input[type="checkbox"] {
   align-items: center;
   div {
     margin-right: 10px;
-    text-align: center;
-    a {
-      letter-spacing: 3px;
-    }
+    text-align: right;
   }
   .like-button {
     a {
+      
       color: palevioletred;
+    }
+    .vertical_like {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      div {
+        margin: 0px;
+      }
     }
   }
 }

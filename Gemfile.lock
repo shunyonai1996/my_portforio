@@ -384,7 +384,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  mysql2
+  mysql2 (~> 0.5.4)
   net-imap
   net-pop
   net-smtp
