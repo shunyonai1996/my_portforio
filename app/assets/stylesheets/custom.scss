@@ -45,8 +45,8 @@ p {
   word-wrap: break-word;
 }
 
-option, select {
-  text-align: center;
+option {
+  text-align: -webkit-center;
 }
 
 
@@ -164,13 +164,19 @@ $gray-medium-light: #eaeaea;
 
 
 /* search form */
+
+
 #example_form {
+  position: relative;
   margin-right: auto;
   margin-left: auto;
   padding: 20px 0px;
   background-color: rgb(75, 101, 135);
   border-radius: 10px;
   select {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
     display: block;
     margin-bottom: 10px;
     margin-left: auto;
@@ -192,9 +198,6 @@ $gray-medium-light: #eaeaea;
     width: 60%;
     border-radius: 10px;
     border: rgb(247, 246, 242);
-  }
-  option {
-    text-align: center;
   }
 }
 
