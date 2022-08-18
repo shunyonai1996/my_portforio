@@ -48,7 +48,7 @@
     <div class="reaction-area">
       <div id="likes_buttons_<%= @micropost.id %>" class="like-button">
         <%= render partial: 'likes/like', locals: { micropost: @micropost, likes: @likes} %>
-      </div>    
+      </div>
       <%= render partial: 'bookmarks/bookmark' %>
       <div>
         <% if current_user?(@micropost.user) %>

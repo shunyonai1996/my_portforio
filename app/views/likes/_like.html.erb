@@ -13,33 +13,31 @@
     <% end %>
   <% else %>
     <%= link_to micropost_likes_path(micropost.id), method: :post, remote: true do %>
-      <div class="no_like">
-        <div>
-          <i class="material-icons">favorite_border</i>
+        <div class="no_like">
+          <div>
+            <i class="material-icons">favorite_border</i>
+          </div>
+          <div>
+            <%= micropost.likes_count %>
+          </div>
         </div>
-        <div>
-          <%= micropost.likes_count %>
-        </div>
-      </div>
     <% end %>
   <% end %>
 
 <% else %>
-
   <% if micropost.likes_count > 0 %>
-    <div class="vertical_like">
-      <i class="material-icons palevioletred">favorite</i>
-      <span>
-        <p><%= micropost.likes_count %></p>
-      </span>
-    </div>
+      <div class="vertical_like">
+        <i class="material-icons palevioletred">favorite</i>
+        <span>
+          <p><%= micropost.likes_count %></p>
+        </span>
+      </div>
   <% else %>
-    <div class="no_like">
-      <i class="material-icons">favorite_border</i>
-      <span>
-        <%= micropost.likes_count %>
-      </span>
-    </div>
+      <div class="no_like">
+        <i class="material-icons">favorite_border</i>
+        <span>
+          <%= micropost.likes_count %>
+        </span>
+      </div>
   <% end %>
-
 <% end %>
