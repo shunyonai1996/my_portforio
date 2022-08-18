@@ -70,6 +70,12 @@ a:hover {
 .material-icons.md-24 { font-size: 24px; vertical-align: middle; }
 .material-icons.md-36 { font-size: 36px; vertical-align: middle; }
 .material-icons.md-48 { font-size: 48px; vertical-align: middle; }
+.material-icons.palevioletred {
+  color: palevioletred;
+  a {
+    color: palevioletred;
+  }
+}
 
 /* header, footer */
 header,footer {
@@ -162,11 +168,8 @@ $gray-medium-light: #eaeaea;
   }
 }
 
-
 /* search form */
-
-
-#example_form {
+.example-form {
   position: relative;
   margin-right: auto;
   margin-left: auto;
@@ -197,6 +200,7 @@ $gray-medium-light: #eaeaea;
     height: 40px;
     width: 60%;
     border-radius: 10px;
+    background-color: rgb(247, 246, 242);
     border: rgb(247, 246, 242);
   }
 }
@@ -397,16 +401,27 @@ input[type="checkbox"] {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  .basic-info {
+    margin: 0px;
+    .basic-info-item {
+      margin: 0px 10px 0px 0px;
+    }
+  }
   div {
     margin-right: 10px;
     text-align: right;
   }
   .like-button {
-    a {
-      
-      color: palevioletred;
-    }
     .vertical_like {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      color: palevioletred;
+      div {
+        margin: 0px;
+      }
+    }
+    .no_like {
       display: flex;
       align-items: center;
       justify-content: right;

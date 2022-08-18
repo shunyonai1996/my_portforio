@@ -1,66 +1,62 @@
 <% provide(:title, "投稿") %>
 <div class="row">
   <div class="col-xs-12">
+    <% if logged_in? %>
+      <h2>投稿<span class="material-icons md-36">create</span></h2>
+      <%= form_with(model: @micropost, local: true, id: 'example_form', class: 'post-form') do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field" >
+          <div class="field-item">
+            <%= f.label :industry, "業界（必須）" %>
+            <%= f.select :industry_id, nil, {prompt: "①業界を選択"}, {'v-model': 'selectedIndust', '@change': 'getOccupations(selectedIndust)'} do %>
+              <option v-for="industry in industries" :key="industry.name" :value="industry.id">
+                {{industry.name}}
+              </option>
+            <% end %>
+          </div>
 
-<% if logged_in? %>
-  <h2>投稿<span class="material-icons md-36">create</span></h2>
-
-  <%= form_with(model: @micropost, local: true, id: 'example_form') do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field" >
-
-    <div class="field-item">
-      <%= f.label :industry, "業界（必須）" %>
-      <%= f.select :industry_id, nil, {prompt: "①業界を選択"}, {'v-model': 'selectedIndust', '@change': 'getOccupations(selectedIndust)'} do %>
-        <option v-for="industry in industries" :key="industry.name" :value="industry.id">
-          {{industry.name}}
-        </option>
+          <div class="field-item">
+            <%= f.label :occupation, "職種（必須）" %>
+            <%= f.select :occupation_id, nil, {prompt: "②職業を選択"} do %>
+              <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">{{occupation.name}}</option>
+            <% end %>
+          </div>
+          
+          <div class="field-item">
+            <%= f.label :job, "職業（任意）" %>
+            <%= f.text_field :job, class: 'form-control' %>
+          </div>
+          
+          <div class="field-item">
+            <%= f.label :busyness, "忙しさ" %>
+            <%= f.select :busyness, [["繁忙期", "繁忙期"], ["通常期", "通常期"], ["閑散期", "閑散期"]] %>
+          </div>
+          
+          <div class="field-item">
+            <%= f.label :seniority_year,  "勤続年数" %>
+            <%= f.select :seniority_year, [["１年未満", "１年未満"], ["１年以上〜３年未満"], ["１年以上〜３年未満"], ["３年以上〜５年未満"], ["３年以上〜５年未満"], ["１０年以上"], ["１０年以上"]] %>
+          </div>
+            
+          <div class="field-item">
+            <%= link_to_add_association 'クリックで追加', f, :job_discriptions, data: { association_insertion_method: 'append' } %>
+            <%= f.fields_for :job_discriptions do |discription| %>
+              <%= render "job_discription_fields", f: discription %>
+            <% end %>
+          </div>
+          
+          <div class="field-item">
+            <%= f.label :complement, "補足" %>
+            <%= f.text_field :complement, class: 'form-control' %>
+          </div>
+          
+          <div class="field-item">
+            <%= f.submit "投稿", class: "btn btn-primary" %>
+          </div>
+        </div>
       <% end %>
-    </div>
-
-    <div class="field-item">
-      <%= f.label :occupation, "職種（必須）" %>
-      <%= f.select :occupation_id, nil, {prompt: "②職業を選択"} do %>
-        <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">{{occupation.name}}</option>
-      <% end %>
-    </div>
-    
-    <div class="field-item">
-      <%= f.label :job, "職業（任意）" %>
-      <%= f.text_field :job, class: 'form-control' %>
-    </div>
-    
-    <div class="field-item">
-      <%= f.label :busyness, "忙しさ" %>
-      <%= f.select :busyness, [["繁忙期", "繁忙期"], ["通常期", "通常期"], ["閑散期", "閑散期"]] %>
-    </div>
-    
-    <div class="field-item">
-      <%= f.label :seniority_year,  "勤続年数" %>
-      <%= f.select :seniority_year, [["１年未満", "１年未満"], ["１年以上〜３年未満"], ["１年以上〜３年未満"], ["３年以上〜５年未満"], ["３年以上〜５年未満"], ["１０年以上"], ["１０年以上"]] %>
-    </div>
-      
-    <div class="field-item">
-      <%= link_to_add_association 'クリックで追加', f, :job_discriptions, data: { association_insertion_method: 'append' } %>
-      <%= f.fields_for :job_discriptions do |discription| %>
-        <%= render "job_discription_fields", f: discription %>
-      <% end %>
-    </div>
-    
-    <div class="field-item">
-      <%= f.label :complement, "補足" %>
-      <%= f.text_field :complement, class: 'form-control' %>
-    </div>
-    
-    <div class="field-item">
-      <%= f.submit "投稿", class: "btn btn-primary" %>
-    </div>
-  </div>
-  <% end %>
-
-  <% else %>
-    <p>ログインしてください</p>
-  <% end %>
+    <% else %>
+      <p>ログインしてください</p>
+    <% end %>
 
   </div>
 </div>

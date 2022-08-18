@@ -47,12 +47,16 @@
 
     <div class="reaction-area">
       <div id="likes_buttons_<%= @micropost.id %>" class="like-button">
-        <p><%= render partial: 'likes/like', locals: { micropost: @micropost, likes: @likes} %></p>
-      </div>
+        <%= render partial: 'likes/like', locals: { micropost: @micropost, likes: @likes} %>
+      </div>    
       <%= render partial: 'bookmarks/bookmark' %>
-
-      
+      <div>
+        <% if current_user?(@micropost.user) %>
+          <%= link_to "投稿を削除", @micropost, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+        <% end %>
+      </div>
     </div>
 
   </div>
 </div>
+

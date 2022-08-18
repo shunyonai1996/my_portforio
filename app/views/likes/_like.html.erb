@@ -4,21 +4,21 @@
     <%= link_to micropost_like_path(micropost_id: micropost.id ,id: micropost.likes[0].id), method: :delete, remote: true do %>
       <div class="vertical_like">
         <div>
-          <i class="material-icons">favorite</i>
+          <i class="material-icons palevioletred">favorite</i>
         </div>
         <div>
-          <p><%= micropost.likes_count %></p>
+          <%= micropost.likes_count %>
         </div>
       </div>
     <% end %>
   <% else %>
     <%= link_to micropost_likes_path(micropost.id), method: :post, remote: true do %>
-      <div class="vertical_like">
+      <div class="no_like">
         <div>
-          <i class="material-icons">favorite</i>
+          <i class="material-icons">favorite_border</i>
         </div>
         <div>
-          <p><%= micropost.likes_count %></p>
+          <%= micropost.likes_count %>
         </div>
       </div>
     <% end %>
@@ -28,16 +28,16 @@
 
   <% if micropost.likes_count > 0 %>
     <div class="vertical_like">
-      <i class="material-icons">favorite</i>
+      <i class="material-icons palevioletred">favorite</i>
       <span>
         <p><%= micropost.likes_count %></p>
       </span>
     </div>
   <% else %>
-    <div class="vertical_like">
+    <div class="no_like">
       <i class="material-icons">favorite_border</i>
       <span>
-        <p><%= micropost.likes_count %></p>
+        <%= micropost.likes_count %>
       </span>
     </div>
   <% end %>

@@ -10,6 +10,7 @@ class Micropost < ApplicationRecord
   accepts_nested_attributes_for :job_discriptions, allow_destroy: true
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
+  validates :job_discriptions, presence: true
 
   def like_user(user_id)
     likes.find_by(user_id: user_id)
