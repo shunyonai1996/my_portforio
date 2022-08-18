@@ -60,10 +60,6 @@
         </div>
 
         <div>
-          <a href="/microposts/<%= post.id %>"><%= "コメント" %><span class="material-icons md-18">chat</span></a>
-        </div>
-
-        <div>
           <% if logged_in? %>
             <a href="/microposts/<%= post.id %>"><%= '詳細ページへ' %><span class="material-icons md-18">exit_to_app</span></a>
           <% else %>

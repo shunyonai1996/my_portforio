@@ -1,7 +1,7 @@
 <% if logged_in? %>
 
   <% unless micropost.like_user(current_user.id).blank? %>
-    <%= link_to micropost_like_path(micropost_id: micropost.id ,id: micropost.likes[0].id), method: :delete, remote: true do %>
+    <%= link_to micropost_lik   e_path(micropost_id: micropost.id ,id: micropost.likes[0].id), method: :delete, remote: true do %>
       <div class="vertical_like">
         <div>
           <i class="material-icons">favorite</i>
