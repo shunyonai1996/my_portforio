@@ -1,5 +1,0 @@
-=> Booting Puma
-=> Rails 6.1.6.1 application starting in production 
-=> Run `bin/rails server --help` for more startup options
-A server is already running. Check /var/www/rails/my_portforio/tmp/pids/server.pid.
-Exiting

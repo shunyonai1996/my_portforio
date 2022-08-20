@@ -225,23 +225,22 @@ $gray-medium-light: #eaeaea;
         color: rgb(247, 246, 242);
       }
       a {
-        color: rgb(247, 246, 242);
+        color: #333;
       }
     }
     .add_fields, .remove_fields {
       display       : block;
-      width: 150px;
+      width: 200px;
       border-radius : 10px;
       font-size     : 10pt;
       text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 15px;
+      margin-bottom: 5px;
       margin-left: auto;
       margin-right: auto;
       cursor        : pointer;
       padding       : 8px 12px;
-      background    : rgb(200, 198, 198);
-      color         : #333;
+      background-color    : rgb(200, 198, 198);
       line-height   : 1em;
       opacity       : 0.9;
       transition    : .3s;

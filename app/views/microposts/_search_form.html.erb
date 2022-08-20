@@ -7,7 +7,7 @@
       </option>
     <% end %>
 
-    <%= f.select :id, nil, {prompt: "②職業を選択"} do %>
+    <%= f.select :id, nil, {prompt: "②職種を選択"} do %>
       <option v-for="occupation in occupations" :key="occupation.name" :value="occupation.id">
         {{occupation.name}}
       </option>

@@ -12,3 +12,9 @@ ja:
         occupation_if: 職種
         job: 職業
         work_span: 現在の職業の勤続年数
+      micropost:
+        occupation: 職種
+        industry: 業界
+        job_discriptions: 職務内容
+      job_discriprions:
+        time: 時間
