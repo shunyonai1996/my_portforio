@@ -38,7 +38,7 @@ module SessionsHelper
   end
 
   def guest_user
-    user_id = User.find_by(id: "12")
+    user_id = User.find_by(id: "15")
     @guest_user = user_id
   end
 

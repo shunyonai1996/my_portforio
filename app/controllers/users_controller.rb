@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
-      user.birthday = "1990-01-01"
+      user.birthday = "1994-01-01"
     end
     session[:user_id] = user.id
     flash[:success] = "ゲストユーザーとしてログインしました"
