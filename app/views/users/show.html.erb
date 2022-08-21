@@ -16,7 +16,9 @@
         <p><%= @user.name %></p>
       </div>
       <!-- 生年月日から年齢を逆算 -->
-      <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
+      <% if !guest_user?(@user) %>
+        <p class="basic-info-item"><%= (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</p>
+      <% end %>
 
       <% if current_user?(@user) && !guest_user?(@user) %>
         <div class="basic-info-item">
@@ -34,12 +36,14 @@
         </div>
       <% end %>
       
-      <div class="basic-info-item">
-        <p>自己紹介:</p>
-        <p>
-          <%= @user.biography %>
-        </p>
-      </div>
+      <% if !guest_user?(@user) %>
+        <div class="basic-info-item">
+          <p>自己紹介:</p>
+          <p>
+            <%= @user.biography %>
+          </p>
+        </div>
+      <% end %>
       
       <%= render partial: 'relationships/follow_button' %>
 
