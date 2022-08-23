@@ -35,9 +35,9 @@
 - Git / GitHub
 
 ## ER図
-[my_portforio_Diagram.drawio.pdf](https://github.com/shunyonai1996/my_portforio/files/9401319/my_portforio_Diagram.drawio.pdf)
+![my_portforio_Diagram drawio](https://user-images.githubusercontent.com/78899768/186126120-ffdbf2e8-6c54-4b1d-8eaf-51684ab4fcdc.jpg)
 
-##　機能一覧
+## 機能一覧
 - ユーザー機能
   - 新規登録
   - ログイン/ログアウト
