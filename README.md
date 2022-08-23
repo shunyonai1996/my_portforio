@@ -35,7 +35,8 @@
 - Git / GitHub
 
 ## ER図
-![my_portforio_Diagram drawio](https://user-images.githubusercontent.com/78899768/186126120-ffdbf2e8-6c54-4b1d-8eaf-51684ab4fcdc.jpg)
+![ER図](https://user-images.githubusercontent.com/78899768/186126606-ac1e998c-ff89-4a13-956e-f663a6799f9f.jpg)
+
 
 ## 機能一覧
 - ユーザー機能
