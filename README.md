@@ -34,9 +34,11 @@
 
 - Git / GitHub
 
-## ER図
-![ER図](https://user-images.githubusercontent.com/78899768/186126606-ac1e998c-ff89-4a13-956e-f663a6799f9f.jpg)
+## インフラ構成図
+![インフラ構成図 drawio](https://user-images.githubusercontent.com/78899768/186549512-2485a8cb-6904-4a40-9f7c-ff01f23ee654.png)
 
+## ER図
+![ER図](https://user-images.githubusercontent.com/78899768/186549870-1a6d5df5-ca87-412b-8565-70a10061aa37.png)
 
 ## 機能一覧
 - ユーザー機能
