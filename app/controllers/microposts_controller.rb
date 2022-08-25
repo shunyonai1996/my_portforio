@@ -14,7 +14,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "投稿が完了しました"
       redirect_to root_path
     else
-      render 'microposts/new/'
+      flash[:danger] = "投稿に失敗しました"
+      redirect_to request.referrer || root_path
     end
   end
 
