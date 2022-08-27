@@ -9,7 +9,6 @@ class Micropost < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   accepts_nested_attributes_for :job_discriptions, allow_destroy: true
   default_scope -> { order(created_at: :desc) }
-  validates :user_id, presence: true
   validates :job_discriptions, presence: true
 
   def like_user(user_id)
@@ -17,7 +16,7 @@ class Micropost < ApplicationRecord
   end
 
   def bookmarked_by?(user)
-    bookmarks.where(user_id: user).exists?
+    bookmarks.exists?(user_id: user)
   end
 
 end

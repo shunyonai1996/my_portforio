@@ -5,10 +5,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
-  #userがフォローされている人、followがフォローしてる人
   has_many :followings, through: :relationships, source: :follow
   has_many :followers, through: :reverse_of_relationships, source: :user
-
   has_one_attached :image
   attr_accessor :remember_token
   validates :name, presence: true, length: { maximum: 50 }
@@ -19,7 +17,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :birthday, presence: true
-
   #画像アップロードのための記述
   mount_uploader :avatar, AvatarUploader
 
@@ -54,9 +51,7 @@ class User < ApplicationRecord
 
   #フォロー機能のメソッドを記述
   def follow(user_id)
-    unless self == user_id
-      relationships.create(follow_id: user_id)
-    end
+    relationships.create(follow_id: user_id) unless (self == user_id)
   end
 
   def unfollow(user_id)

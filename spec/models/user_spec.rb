@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'emailの文字数が200文字を超えるとエラー' do
-      user.email = "a" * 189 + "@example.com"
+      user.email = ("a" * 189) + "@example.com"
       expect(user).not_to be_valid
     end
     

@@ -29,10 +29,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if guest_user?(current_user)
-      flash[:danger] = "ゲストユーザーは編集できません"
-      redirect_to root_url
-    end
+    return unless guest_user?(current_user)
+    flash[:danger] = "ゲストユーザーは編集できません"
+    redirect_to root_url
   end
 
   def update
@@ -56,10 +55,10 @@ class UsersController < ApplicationController
   end
 
   def guest_sign_in
-    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "ゲストユーザー"
-      user.birthday = "1994-01-01"
+    user = User.find_or_create_by!(email: 'guest@example.com') do |guest_user|
+      guest_user.password = SecureRandom.urlsafe_base64
+      guest_user.name = "ゲストユーザー"
+      guest_user.birthday = "1994-01-01"
     end
     session[:user_id] = user.id
     flash[:success] = "ゲストユーザーとしてログインしました"
@@ -84,9 +83,7 @@ class UsersController < ApplicationController
 
   #ログイン済みユーザーかどうか確認
   def logged_in_user
-    unless logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
+    return flash[:danger] = "ログインしてください" unless logged_in?
+    redirect_to login_url
   end
 end
