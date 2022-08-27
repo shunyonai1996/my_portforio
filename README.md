@@ -13,15 +13,13 @@
 
 - Ruby 3.1.0
 - Ruby on Rails 6.1.6.1
+- Rspec (テスト)
+- RuboCop (コード解析ツール)
 
 【フロントエンド】
 
 - HTML/CSS/JavaScript
 - Vue.js
-
-【テスト】
-
-- Rspec
 
 【インフラ】
 
