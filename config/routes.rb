@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   get     'terms',        to: 'home#terms'
   get     'signup',       to: 'users#new'
   get     '/login',       to: 'sessions#new'
-  get     'likes/create'
-  get     'likes/destroy'
   post    '/login',       to: 'sessions#create'
+  delete  '/logout',      to: 'sessions#destroy'
   post    'set_occupations', to: 'occupations#set_occupations'
   post    '/users/guest_sign_in', to: 'users#guest_sign_in'
-  delete  '/logout',      to: 'sessions#destroy'
+  get     'likes/create'
+  get     'likes/destroy'
 
   resources :users do
     resources :relationships, only: [:create, :destroy]

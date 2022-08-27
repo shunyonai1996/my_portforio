@@ -9,9 +9,9 @@ industries_list = csv_data.map { |row| row[2] }.uniq
 
 # 小項目データ抽出
 occupations_list = csv_data.map do |row|
-    next if row[2] == nil
-    row[2, 3]
-  end.compact
+  next if row[2] == nil
+  row[2, 3]
+end.compact
 
 # 大項目データ作成
 industries_list.each do |industry|
@@ -32,7 +32,6 @@ User.create!(name:  "よなしゅん",
             password_confirmation: "yonai471",
             admin: true)
 
-
 # 追加のユーザーをまとめて生成する
 10.times do |n|
 name  = Faker::Name.name
@@ -50,7 +49,5 @@ users = User.order(:created_at).take(6)
 
 2.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  
-
   users.each { |user| user.microposts.create!(occupation_id: 1, industry_id: 1, job: 'トヨタ自動車' ,busyness: '繁忙期', seniority_year: '１年未満', likes_count: 0, job_discriptions_attributes:[content: content, time: '08:30'] ) }
 end

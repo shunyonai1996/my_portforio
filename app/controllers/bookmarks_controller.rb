@@ -1,14 +1,10 @@
 class BookmarksController < ApplicationController
-
+  
   def create
     @micropost = Micropost.find(params[:micropost_id])
     bookmark = @micropost.bookmarks.new(user_id: current_user.id)
-    if bookmark.save
-      flash[:success] = 'マイページにブックマークを保存しました'
-      redirect_to request.referer
-    else
-      redirect_to request.referer
-    end
+    bookmark.save ? flash[:success] = 'マイページにブックマークを保存しました' : flash[:success] = '処理に失敗しました'
+    redirect_to request.referer
   end
   
   def destroy
@@ -17,10 +13,10 @@ class BookmarksController < ApplicationController
     if bookmark.present?
       bookmark.destroy
       flash[:success] = 'ブックマークを解除しました'
-      redirect_to request.referer
     else
-      redirect_to request.referer
+      flash[:success] = '処理に失敗しました'
     end
+    redirect_to request.referer
   end
 
   def bookmarklist

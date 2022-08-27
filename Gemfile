@@ -14,7 +14,7 @@ gem 'faker', '2.20.0'
 gem 'will_paginate', '3.3.1'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'cocoon'
-#gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
 
 gem 'mysql2'
 gem 'net-smtp'
@@ -58,10 +58,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'web-console', '>= 4.1.0'
   gem 'pre-commit'
-  gem 'rubocop'
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails'
-  gem 'rubocop-rspec'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
@@ -77,9 +73,10 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'guard', '2.16.2'
-  gem 'guard-minitest', '2.4.6'
-  gem 'minitest'
-  gem 'minitest-reporters'
+  gem 'rubocop'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
