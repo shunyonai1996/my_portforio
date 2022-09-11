@@ -25,19 +25,10 @@
   <% end %>
 
 <% else %>
-  <% if micropost.likes_count > 0 %>
-      <div class="vertical_like">
-        <i class="material-icons palevioletred">favorite</i>
-        <span>
-          <p><%= micropost.likes_count %></p>
-        </span>
-      </div>
-  <% else %>
-      <div class="no_like">
-        <i class="material-icons">favorite_border</i>
-        <span>
-          <%= micropost.likes_count %>
-        </span>
-      </div>
-  <% end %>
+  <div class="no_like">
+    <i class="material-icons">favorite_border</i>
+    <span>
+      <%= micropost.likes_count %>
+    </span>
+  </div>
 <% end %>
