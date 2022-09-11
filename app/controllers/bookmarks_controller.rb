@@ -21,6 +21,6 @@ class BookmarksController < ApplicationController
 
   def bookmarklist
     @user = User.find(params[:user_id])
-    @bookmarks = @user.bookmarks
+    @bookmarks = @user.bookmarks.preload(:user, :micropost)
   end
 end

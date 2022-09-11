@@ -14,6 +14,7 @@ gem 'faker', '2.20.0'
 gem 'will_paginate', '3.3.1'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'cocoon'
+gem 'activerecord-precounter'
 # gem 'sqlite3', '~> 1.4'
 
 gem 'mysql2'

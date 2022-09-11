@@ -4,7 +4,7 @@ class MicropostsController < ApplicationController
 
   def index
     @users = User.where(activated: true)
-    @microposts = Micropost.all.order(created_at: :desc).limit(15)
+    @microposts = Micropost.all.order(created_at: :desc).limit(15).preload(:user, :job_discriptions, :occupation, :likes)
     gon.industries = Industry.all.to_json only: %i[id name]
   end
 
