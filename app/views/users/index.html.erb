@@ -22,7 +22,7 @@
           </li>
           <li><%= (Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) / 10000 %>歳</li>
 
-          <li>投稿数（<%= user.microposts.count %>）</li>
+          <li>投稿数（<%= @micropost_counts %>）</li>
         </ul>
       </div>
     </a>
